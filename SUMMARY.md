@@ -6,7 +6,7 @@
 * [Whitepaper V4](https://github.com/VenusProtocol/venus-protocol-documentation/blob/main/whitepapers/Venus-whitepaper-v4.pdf)
 * [FAQ](getting-started/faq.md)
 
-## What's New?
+## 什么是新的？
 
 * [E-Mode](whats-new/emode.md)
 * [Isolated Pools](whats-new/isolated-pools.md)
@@ -17,13 +17,13 @@
 * [Venus Prime](whats-new/prime-yield.md)
 * [Stable Rate Borrowing](whats-new/stable-rate-borrowing.md)
 
-## Governance
+## 治理
 
 * [VIPs](governance/decentralization.md)
 * [Tokenomics](governance/tokenomics.md)
 * [Community Forum](https://community.venus.io/top?period=quarterly)
 
-## Risk
+## 风险
 
 * [Resilient Price Oracle](risk/resilient-price-oracle.md)
 * [Interest Rate Model](risk/interest-rate-model.md)
@@ -31,14 +31,14 @@
 * [Risk Management](risk/risk-management.md)
 * [Risk Oracles and Risk Stewards](risk/risk-oracle-and-risk-stewards.md)
 
-## Tokens
+## 代币
 
 * [XVS](tokens/xvs.md)
 * [VAI](tokens/vai.md)
   * [VAIController](tokens/vai-controller.md)
   * [VAIUnitroller](tokens/vai-unitroller.md)
 
-## Guides
+## 指南
 
 * [Venus interface](guides/market-interaction/interface.md)
 * [Supplying and borrowing](guides/market-interaction/supply-borrow.md)
@@ -54,7 +54,7 @@
 * [Import Positions](guides/import-positions.md)
 * [Enable E-mode](guides/enable-e-mode.md)
 
-## Technical reference
+## 技术参考
 
 * [Contracts Overview](technical-reference/contracts-overview.md)
 * [Technical articles](technical-reference/reference-technical-articles/README.md)
@@ -188,7 +188,7 @@
   * [XVS](technical-reference/reference-xvs-bridge/XVS.md)
   * [TokenController](technical-reference/reference-xvs-bridge/TokenController.md)
 
-## Deployed Contracts
+## 已部署合同
 
 * [Markets](deployed-contracts/markets.md)
 * [Funds](deployed-contracts/funds.md)
@@ -198,12 +198,12 @@
 * [Token Converters](deployed-contracts/token-converters.md)
 * [VenusERC4626](deployed-contracts/venus-erc4626.md)
 
-## Services
+## 服务
 
 * [API](services/api.md)
 * [Subgraphs](services/subgraphs.md)
 
-## Links
+## 链接
 
 * [Security & Audits](security-and-audits.md)
 * [Resources](resources.md)
