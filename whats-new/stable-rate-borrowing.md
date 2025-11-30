@@ -1,21 +1,21 @@
-# Stable Rate Borrowing
+# 稳定利率借贷
 
 {% hint style="warning" %}
-**To be released**
+**即将发布**
 {% endhint %}
 
-### Overview:
+### 概述:
 
-Stable Rate Borrowing is a distinctive feature of the Venus Protocol that provides an alternative to variable interest rate loans. Stable-rate loans set their interest rates at issuance until a rebalancing event occurs. This approach shields users who borrow at a stable rate from being affected by individual actions of other users and large fluctuations in the market.
+稳定利率借贷是维纳斯协议的一项独特功能，它为浮动利率贷款提供了一种替代方案。稳定利率贷款的利率在发放时即已确定，直至发生再平衡事件。这种方式能够保护以稳定利率借款的用户免受其他用户的个人行为和市场大幅波动的影响。
 
-### Rate Determination:
+### 利率确定：
 
-The interest rates for stable and variable rate borrowing are determined based on several calculations involving parameters such as utilization rate, stable loan adoption rate, and total supply. For instance, the stable interest rate will include a base premium plus an additional premium that depends on the stable loan adoption rate.
+固定利率和浮动利率贷款的利率是根据多项计算确定的，这些计算涉及多种参数，例如资金利用率、固定利率贷款的接受率和总供给量。例如，固定利率包含一个基准溢价和一个取决于固定利率贷款接受率的额外溢价。
 
-### Model Parameters:
+### 模型参数：
 
-The model parameters involved in the calculations include slopes for the variable interest rate, a base rate per block, the optimal utilization rate (kink), a reserve factor, base premium, and other parameters related to stable loan borrowing.
+计算中涉及的模型参数包括浮动利率的斜率、每个利率段的基准利率、最优资金利用率（拐点）、准备金率、基准溢价以及其他与固定利率贷款相关的参数。
 
-### Rebalancing Conditions:
+### 再平衡条件：
 
-The fixed rate of a stable loan persists until certain rebalancing conditions are met. These conditions involve the utilization rate and the comparison between the market average borrow rate and the variable borrow rate. The stable rate provides predictability for the borrower but may come at a cost of higher interest rates compared to the variable rate.
+固定利率贷款的固定利率将持续有效，直至满足某些再平衡条件。这些条件涉及资金利用率以及市场平均借款利率与浮动利率之间的比较。固定利率为借款人提供了可预测性，但与浮动利率相比，其成本可能更高。
