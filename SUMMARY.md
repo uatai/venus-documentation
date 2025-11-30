@@ -2,7 +2,7 @@
 
 ## 入门
 
-* [概述](README.md)
+* [概述](getting-started/README.md)
 * [白皮书 V4](https://github.com/VenusProtocol/venus-protocol-documentation/blob/main/whitepapers/Venus-whitepaper-v4.pdf)
 * [常见问题](getting-started/faq.md)
 
