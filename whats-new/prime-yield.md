@@ -39,7 +39,7 @@ layout:
 * 在BNB链上，可撤销Prime代币的数量上限为500个。[来源](https://app.venus.io/#/governance/proposal/201)。可通过VIP进行更改。
 
 2. **不可撤销的“OG”Prime代币（第二阶段）：**
-   * _To be defined_
+   * _待定_
 
 <figure><img src="../.gitbook/assets/6e01c33d-ac9e-41d6-9542-fc2f3b0ecb90.png" alt=""><figcaption></figcaption></figure>
 
@@ -94,12 +94,12 @@ _注意：合格供应量和借款金额将受到限制，由质押的 XVS 限�
 * BTC Supply Multiplier = 2
 * XVS Price = $4.0
 
-**User Parameters**
+**用户参数**
 
-| User Parameters | Token Value | USD Value |
+| 用户参数         | 代币价值      | 美元价值 |
 | --------------- | ----------- | --------- |
-| Staked XVS      | 1,200       | $4,800    |
-| BTC Supply      | 0.097       | $2,500    |
+| 已质押 XVS       | 1,200       | $4,800    |
+| BTC 供应         | 0.097       | $2,500    |
 
 **合格的 已质押 XVS**
 
