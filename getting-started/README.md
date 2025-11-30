@@ -1,13 +1,15 @@
-# Overview
+# 概述
 
-Launched in 2020, Venus Protocol (a.k.a. “Venus”) pushed the edges of decentralized finance through its composition of two pre-existing solutions and deployment on BNB chain, lowering the barrier to entry for millions of new users around the globe. By combining the stablecoin minting facility introduced by Maker and algorithmic money markets developed by Compound, Venus simplified the user experience and provided core capabilities that enabled decentralized finance to flourish in a single application. As a result, Venus found remarkable success and quickly rose to be one of the most widely used decentralized applications in web3.
+金星协议Venus Protocol（简称“金星Venus”）于 2020 年推出，它融合了两个现有的解决方案，并部署在 BNB 链上，从而突破了去中心化金融的界限，降低了全球数百万新用户的准入门槛。金星协议 结合了 Maker 推出的稳定币铸造机制和 Compound 开发的算法货币市场，简化了用户体验，并在一个应用程序中提供了核心功能，使去中心化金融得以蓬勃发展。因此，金星协议 取得了显著的成功，并迅速成为 Web 3 领域最广泛使用的去中心化应用程序之一。
 
-The latest iteration of Venus Protocol, the most trusted and battle-tested lending and borrowing protocol on the BNB Chain, builds on prior successes and lessons learned to improve in 3 key areas:
+最新版本的 金星协议 是 BNB 链上最值得信赖、久经考验的借贷协议，它在以往成功经验的基础上，着重改进了以下三个关键领域：
 
-1. Risk management
-2. Decentralization
-3. User experience
+1. 风险管理
 
-In doing so, Venus continues to push the boundaries of what's possible within the realm of decentralized finance.
+2. 去中心化
+
+3. 用户体验
+
+通过这些改进，金星协议 将继续拓展去中心化金融领域的边界。
 
 <figure><img src=".gitbook/assets/overview.svg" alt=""><figcaption></figcaption></figure>
