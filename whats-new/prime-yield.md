@@ -59,15 +59,15 @@ $$
 Rewards_{i,m} = \Gamma_m \times \mu \times \frac{\tau_{i}^\alpha \times \sigma_{i,m}^{1-\alpha}}{\sum_{j,m} \tau_{j}^\alpha \times \sigma_{j,m}^{1-\alpha}}
 $$
 
-地址:
+当:
 
-* $$Rewards_{i,m}$$ = Rewards for user $$i$$ in market $$m$$
-* $$\Gamma_m$$ = Protocol Reserve Revenue for market $$m$$
-* $$μ$$ = Proportion to be distributed as rewards
-* $$α$$ = Protocol stake and supply & borrow amplification weight
-* $$τ_{i}​$$ = XVS staked amount for user $$i$$
-* $$\sigma_i$$ = Sum of **qualified** supply and borrow balance for user $$i$$
-* $$∑_{j,m}​$$ = Sum for all users $$j$$ in markets $$m$$
+* $$Rewards_{i,m}$$ = 用户 $$i$$ 在市场上的奖励 $$m$$
+* $$\Gamma_m$$ = 市场协议储备收入 $$m$$
+* $$μ$$ = 作为奖励分配的比例s
+* $$α$$ = 协议权益和供应 & 借用放大权重
+* $$τ_{i}​$$ = XVS 用户质押金额 $$i$$
+* $$\sigma_i$$ = Sum of **qualified** 用户供需余额 $$i$$
+* $$∑_{j,m}​$$ = 所有用户在 $$m$$ 市场中的总和 $$j$$
 
 **符合条件的 XVS 质押：**
 
@@ -91,8 +91,8 @@ _注意：合格供应量和借款金额将受到限制，由质押的 XVS 限�
 * $${\sum_{j,BTC} \tau_{j}^\alpha \times \sigma_{j,BTC}^{1-\alpha}}$$ = 744,164
 * $$\Gamma_{BTC}$$ = 8 BTC
 * $$\mu$$ = 0.2
-* BTC Supply Multiplier = 2
-* XVS Price = $4.0
+* BTC 供给乘数 = 2
+* XVS 价格 = $4.0
 
 **用户参数**
 
