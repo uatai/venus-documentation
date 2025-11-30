@@ -1,39 +1,45 @@
-# VIPs
+# VIP提案
 
-### Overview
+### 概述
 
-Venus Protocol's governance relies on participants locking XVS tokens into a vault to acquire voting power for Venus Improvement Proposals (VIPs). A 48-hour timelock period after voting ensures transparency and protection against malicious proposals. However, the initial model's rigidity prompted the introduction of a new governance structure in Venus V4. This upgraded model incorporates fast-track VIPs, role-based access control, and a fine-grained pause mechanism for enhanced flexibility and timely adjustments.
+金星协议的治理机制依赖于参与者将 XVS 代币锁定在金库中，以获得 金星 改进提案 (VIP) 的投票权。投票后 48 小时的锁定期确保了透明度并防止恶意提案。然而，最初的模式过于僵化，因此 金星协议 V4 引入了新的治理结构。升级后的模式包含快速通道 VIP、基于角色的访问控制以及细粒度的暂停机制，以增强灵活性并实现及时调整。
 
-### Governance Upgrade
+### 治理升级
 
-Venus V4 introduces an improved governance structure with the following components:
+金星协议 V4 引入了改进的治理结构，包含以下组件：
 
-* Fast-track and Critical VIPs
-* Role-based access control
-* Fine-grained pause
+* 快速通道和关键 VIP提案
 
-**Fast-track and Critical Improvement Proposals**
+* 基于角色的访问控制
 
-Venus Governance has now categorized VIPs into three types: Normal, Fast-track, and Critical.
+* 细粒度暂停机制
 
-* **Normal VIPs** encompass significant updates like contract upgrades or changes in access controls.
-* **Fast-track VIPs** deal with risk parameter adjustments such as interest rates or collateral factors.
-* **Critical VIPs** are utilized during emergencies demanding an immediate reaction.
+**快速通道和关键改进提案**
 
-Each VIP type has its unique proposal threshold, timelock, and voting periods, reflecting the potential risk and impact of the proposed changes.
+金星 治理机制现已将 VIP 提案分为三种类型：普通、快速通道和关键。
 
-The initial voting and delay periods for these types are as follows:
+* **普通 VIP 事项** 涵盖重大更新，例如合同升级或访问控制变更。
 
-* Normal VIP: 24 hour voting period + 48 hour delay (+ 48 hour delay to execute commands on networks other than BNB Chain)
-* Fast-track VIP: 24 hour voting period + 6 hour delay (+ 6 hour delay to execute commands on networks other than BNB Chain)
-* Critical VIP: 6 hour voting period + 1 hour delay (+ 1 hour delay to execute commands on networks other than  BNB Chain)
+* **快速通道 VIP 事项** 处理风险参数调整，例如利率或抵押品因素。
 
-**Role-based Access Control**
+* **关键 VIP 事项** 用于需要立即响应的紧急情况。
 
-Venus V4 employs a separate Access Control Manager contract that validates access permissions rather than merely verifying the caller as an "admin". This allows certain actions to bypass voting, enabling them to take the fast-track or critical route, or even to be executed directly through a multisig by guardians. It can be particularly useful for implementing borrowing and supply caps, pausing specific market actions, or responding to rapid market fluctuations.
+每种 VIP 事项类型都有其独特的提案阈值、时限和投票周期，以反映拟议变更的潜在风险和影响。
 
-**Fine-grained Pause**
+这些类型的初始投票和延迟时间如下：
 
-A fine-grained pause mechanism allows the pause guardian to individually halt any action on any market. Unlike previous versions, where the entire protocol was paused for damage control or protection against attacks, the updated model enables guardians to pause individual market actions like supply, borrow, and enabling collateral, offering greater control and flexibility.
+* 普通 VIP：24 小时投票期 + 48 小时延迟（在 BNB 链以外的网络上执行命令需额外 48 小时延迟）
+
+* 快速通道 VIP：24 小时投票期 + 6 小时延迟（在 BNB 链以外的网络上执行命令需额外 6 小时延迟）
+
+* 关键 VIP：6 小时投票期 + 1 小时延迟（在 BNB 链以外的网络上执行命令需额外 1 小时延迟）
+
+**基于角色的访问控制**
+
+金星协议 V4 采用独立的访问控制管理器合约，该合约验证访问权限，而不仅仅是验证调用者是否为“管理员”。这使得某些操作可以绕过投票，走快速通道或关键通道，甚至可以由守护者通过多重签名直接执行。这对于实施借贷和供应上限、暂停特定市场操作或应对快速市场波动尤为有用。
+
+**精细化暂停**
+
+精细化暂停机制允许暂停守护者单独暂停任何市场上的任何操作。与之前的版本不同，之前的版本会暂停整个协议以进行损害控制或防范攻击，而更新后的模型允许守护者暂停单个市场操作，例如供应、借贷和抵押品启用，从而提供更大的控制力和灵活性。
 
 <figure><img src="../.gitbook/assets/0ba42e0a-87cc-4694-9a73-52334a5fd28e.png" alt=""><figcaption><p><em>Governance Process</em></p></figcaption></figure>

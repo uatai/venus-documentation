@@ -1,36 +1,43 @@
-# Tokenomics
+# 代币经济学
 
-### Overview
+### 概述
 
-The Venus Protocol tokenomics have been reevaluated to optimize income distribution and cater to the protocol's present and future needs. [Version 4.1](https://snapshot.box/#/s:venus-xvs.eth/proposal/0xb8f03ad2dd2988a6d2e89a1adbebc52c7a62b284ea493008752c71b7f00b3386) of the Venus Protocol revenue distribution model addresses the need and optimizes the allocation between rewards, treasury reserves, a risk fund and BNB burns.
+金星协议的代币经济学已重新评估，旨在优化收益分配，并满足协议当前及未来的需求。[版本 4.1](https://snapshot.box/#/s:venus-xvs.eth/proposal/0xb8f03ad2dd2988a6d2e89a1adbebc52c7a62b284ea493008752c71b7f00b3386) 的 Venus 协议收益分配模型满足了需求，并优化了奖励、国库储备、风险基金和 BNB 销毁之间的分配。
 
-### XVS Vault Base Rewards
+### XVS 金库基础奖励
 
-The XVS Staking Vault is an integral component of the Venus ecosystem. It enables governance voting participation and is a prerequisite for Venus Prime eligibility. To incentivize XVS staking, additional rewards will be offered in the form of Base Rewards (previously referred to as Legacy Rewards).
+XVS 质押金库是 金星协议 生态系统的重要组成部分。它支持参与治理投票，也是获得 金星高级用户Venus Prime 资格的先决条件。为了激励用户质押 XVS，我们将提供额外的奖励，即基础奖励（之前称为传统奖励）。
 
-These rewards will be transferred every six months from the [XVS Distributor](https://bscscan.com/address/0xfd36e2c2a6789db23113685031d7f16329158384) to the [XVS Vault Store](https://www.bscscan.com/address/0x1e25cf968f12850003db17e0dba32108509c4359), where they will be emitted at a rate of 308.7 XVS per day.
+这些奖励将每六个月从 [XVS 分发商](https://bscscan.com/address/0xfd36e2c2a6789db23113685031d7f16329158384) 转入 [XVS 金库](https://www.bscscan.com/address/0x1e25cf968f12850003db17e0dba32108509c4359)，并以每日 308.7 XVS 的速度发放。
 
-### Revenue Distribution from Protocol Reserves
+### 协议储备金收益分配
 
-Protocol reserves are mainly composed of accumulated borrow fees. The model for revenue allocation from these reserves divides income into three main segments:
+协议储备金主要由累计的借贷手续费构成。这些储备金的收入分配模型将收入分为三个主要部分：
 
-* **Treasury Reserve (15%)**: The treasury reserve is used to fund community-driven initiatives and essential protocol expenses for its ongoing operations.
-* **XVS Vault Rewards (20%)**: This allocation is designated for the buyback of XVS, which is then distributed via vault rewards.
-* **Venus Prime Token Program (20%)**: Used to boost select market APYs with organic rewards for users that qualify.
-* **Risk Fund (20%)**: This fund is established to address potential shortfalls in the protocol, particularly in situations of ineffective or delayed liquidations.
-* **BNB Burn (25%)**: See community proposal [BNB Chain <> Venus BNB Burn Proposal](https://community.venus.io/t/bnb-chain-venus-bnb-burn-proposal/5142).
+* **国库储备金 (15%)**：国库储备金用于资助社区驱动的项目以及协议持续运营所需的必要支出。
 
-### Allocation for Additional Revenue Streams
+* **XVS 金库奖励 (20%)**：这部分资金用于回购 XVS，回购的 XVS 将以金库奖励的形式发放。
 
-Other revenue streams include liquidation penalties and potential income generated from future product releases. The revenue distribution for these streams is as follows:
+* **Venus Prime 代币计划 (20%)**：用于通过为符合条件的用户提供自然奖励来提升特定市场的年化收益率 (APY)。
 
-* **Treasury Reserves (35%)**
-* **XVS Vault Rewards (20%)**
-* **Risk Fund (20%)**
-* **BNB Burn (25%)**
+* **风险基金 (20%)**：该基金用于应对协议可能出现的潜在资金缺口，尤其是在清算无效或延迟的情况下。
 
-The methodology behind these adjustments includes an assessment of the existing tokenomics, past changes, their impact on the ecosystem, and analysis of market dynamics and trends.
+* **BNB 销毁 (25%)**：请参阅社区提案 [BNB 链 <> Venus BNB 销毁提案](https://community.venus.io/t/bnb-chain-venus-bnb-burn-proposal/5142)。
 
-This dual allocation model accounts for the diverse revenue sources within the Venus Protocol ecosystem, ensuring robust and responsive financial management. As the protocol evolves and introduces new products, these models may further be adjusted to optimally serve the Venus community.
+### 其他收入来源分配
+
+其他收入来源包括清算罚款和未来产品发布可能产生的收入。这些收入来源的分配如下：
+
+* **国库储备 (35%)**
+
+* **XVS 金库奖励 (20%)**
+
+* **风险基金 (20%)**
+
+* **BNB 销毁 (25%)**
+
+这些调整背后的方法论包括对现有代币经济模型、过往变更及其对生态系统的影响进行评估，以及对市场动态和趋势的分析。
+
+这种双重分配模型考虑了 金星协议 生态系统内多样化的收入来源，确保稳健且响应迅速的财务管理。随着协议的演进和新产品的推出，这些模型可能会进一步调整，以更好地服务于 金星 社区。
 
 <figure><img src="../.gitbook/assets/tokenomics.svg" alt=""><figcaption></figcaption></figure>
