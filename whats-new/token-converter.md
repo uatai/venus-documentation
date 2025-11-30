@@ -1,30 +1,37 @@
-# Token Converter
+# 代币转换器
 
-### Overview
+### 概述
 
-Protocol revenues, sourced from reserve interests and liquidations, are processed through the [Automatic Income Allocation](automatic-income-allocation.md) module. Once allocated, these underlying tokens are subsequently sent to various Token Converters, each transforming the received income into specific tokens, automating and optimizing this conversion process.
+协议收益来源于储备金和清算，并通过[自动收益分配](automatic-income-allocation.md)模块进行处理。分配完成后，这些底层代币将被发送到各个代币转换器，每个转换器将收到的收益转换为特定的代币，从而实现转换过程的自动化和优化。
 
-### Key Aspects of the Token Converter
+# 代币转换器
 
-The Token Converter works on four key principles:
+### 概述
 
-1. **Distributed and Autonomous**: No centralized management or human interactions needed, ensuring a secure and seamless conversion process.
-2. **Efficient**: The system is designed to maximize the amount of specific tokens we receive while protecting against potential risks like sandwich attacks.
-3. **Streaming**: The conversions occur continually, without waiting for scheduled intervals.
-4. **Transparent**: All conversions are publicly recorded in the blockchain, reinforcing our commitment to transparency.
+### 代币转换器的关键特性
 
-Venus Protocol will offer discounts to incentivize these conversions. This incentive will create arbitrage opportunities in the market, and external agents can potentially gain from these opportunities.
+代币转换器基于以下四个关键原则运行：
 
-### Rational
+1. **分布式和自治**：无需集中管理或人工干预，确保安全无缝的转换过程。
 
-Before the Token Converter, token conversions were not as seamless and efficient. Venus Protocol needed a system that could constantly convert the received income into specific tokens, with no room for errors or delays.
+2. **高效**：系统旨在最大限度地提高我们收到的特定代币数量，同时防范诸如三明治攻击等潜在风险。
 
-The Token Converter streamlines the conversion process by allowing key elements in the Venus Protocol, such as the XVSVaultConverter and RiskFundConverter, to autonomously offer token conversions. This solution follows the rules of distributed and autonomous systems, removing the need for human intervention.
+3. **流式**：转换持续进行，无需等待预定时间间隔。
 
-Moreover, the introduction of incentives through discounts encourages external agents to take part in the conversion process, thus creating a win-win situation for all. This is in line with the vision of decentralization, where processes are not only transparent but also rewarding for participants.
+4. **透明**：所有转换均公开记录在区块链上，强化了我们对透明度的承诺。
 
-### Architecture
+金星协议 将提供折扣以激励这些转换。此激励措施将在市场上创造套利机会，外部机构也可能从中获利。
+
+### 合理性
+
+在代币转换器出现之前，代币转换并不像现在这样无缝高效。 金星协议 需要一个能够持续不断地将收入转换为特定代币的系统，并且不允许出现任何错误或延迟。
+
+代币转换器简化了转换流程，它允许 金星协议 中的关键组件（例如 XVSVaultConverter 和 RiskFundConverter）自主提供代币转换服务。该解决方案遵循分布式和自治系统的规则，无需人工干预。
+
+此外，通过折扣激励机制鼓励外部参与者参与转换过程，从而实现双赢。这符合去中心化的愿景，即流程不仅透明，而且对参与者有利。
+
+### 架构
 
 <figure><img src="../.gitbook/assets/token-converters.svg" alt=""><figcaption></figcaption></figure>
 
-_The dashed lines represent transactions initiated by external agents (VIP’s, scripts, arbitrage bots, etc.), and the solid lines represent transfers of funds._
+_虚线代表由外部代理（VIP、脚本、套利机器人等）发起的交易，实线代表资金转移。_

@@ -12,49 +12,54 @@ layout:
     visible: true
 ---
 
-# Venus Prime
+# 金星协议高级会员Venus Prime
 
-### **Overview**
+### **概述**
 
-Venus Protocol is excited to announce Venus Prime, a revolutionary incentive program aimed to bolster user engagement and growth within the protocol. An integral part of Venus Tokenomics v3.1, Venus Prime aims to enhance rewards and promote $XVS staking, focusing on markets including USDT, USDC, BTC and ETH.
+金星协议 隆重推出 金星协议高级会员Venus Prime，一项旨在提升用户参与度和促进协议发展的革命性激励计划。作为 金星协议代币经济学 v3.1 的重要组成部分，金星协议高级会员Venus Prime 旨在提升奖励并促进 $XVS 质押，重点关注 USDT、USDC、BTC 和 ETH 等市场。
 
-### **Venus Prime Essentials**
+### **金星协议高级会员Venus Prime 要点**
 
-Venus Prime's uniqueness lies in its self-sustaining rewards system, instead of external sources, rewards are derived from the protocol's revenue, fostering a sustainable and ever-growing program.
+金星协议高级会员Venus Prime 的独特之处在于其自给自足的奖励系统。奖励并非来自外部来源，而是源自协议的收益，从而打造一个可持续发展的持续增长型计划。
 
-Eligible $XVS holders will receive a unique, non-transferable Soulbound Token, which boosts rewards across selected markets.
+符合条件的 $XVS 持有者将获得一枚独特的、不可转让的 Soulbound 代币，该代币可提升在特定市场的奖励。
 
-**Prime Tokens:**
+**金星协议高级会员Prime代币：**
 
-Venus Prime encourages user commitment through two unique Prime Tokens:
+金星协议高级会员Venus Prime通过两种独特的金星协议高级会员Prime代币鼓励用户参与：
 
-1. **Revocable Prime Token:**
-   * Users need to stake at least 1,000 XVS for 90 days in a row.
-   * After these 90 days, users can mint their Prime Token.
-   * If a user decides to withdraw XVS and their balance falls below 1000, their Prime Token will be automatically revoked.
-   * The limit to the number of revocable Prime tokens is 500 on BNB chain. [Source](https://app.venus.io/#/governance/proposal/201). It can be changed with a VIP.
-2. **Irrevocable "OG" Prime Token (Phase 2):**
+1. **可撤销金星协议高级会员Prime代币：**
+
+* 用户需要连续90天质押至少1000个XVS。
+
+* 90天后，用户可以铸造自己的金星协议高级会员Prime代币。
+
+* 如果用户决定提取XVS，且其余额低于1000，则其金星协议高级会员Prime代币将被自动撤销。
+
+* 在BNB链上，可撤销Prime代币的数量上限为500个。[来源](https://app.venus.io/#/governance/proposal/201)。可通过VIP进行更改。
+
+2. **不可撤销的“OG”Prime代币（第二阶段）：**
    * _To be defined_
 
 <figure><img src="../.gitbook/assets/6e01c33d-ac9e-41d6-9542-fc2f3b0ecb90.png" alt=""><figcaption></figcaption></figure>
 
-### **Expected Impact and Launch**
+### **预期影响及上线**
 
-Venus Prime aims to incentivize larger stake sizes and diverse user participation. This is expected to significantly increase the staking of XVS, the Total Value Locked (TVL), and market growth.
+金星协议高级会员Venus Prime 旨在激励用户进行更大额的质押，并促进用户多元化参与。预计这将显著提升 XVS 的质押量、总锁定价值 (TVL) 以及市场增长。
 
-Venus Prime intends to promote user loyalty and the overall growth of the protocol. By endorsing long-term staking, discouraging premature withdrawals, and incentivizing larger stakes, Venus Prime sets a new course in user engagement and liquidity, contributing to Venus Protocol's success.
+金星协议高级会员Venus Prime 致力于提升用户忠诚度，并推动协议的整体发展。通过鼓励长期质押、抑制过早提现以及激励更大额的质押，金星协议高级会员Venus Prime 为用户参与度和流动性开辟了新的道路，助力 金星协议的成功。
 
-Stake your $XVS tokens today to be eligible for Venus Prime, an exciting new venture in the DeFi landscape.
+立即质押您的 $XVS 代币，即可参与金星协议高级会员 Venus Prime，体验 DeFi 领域激动人心的新项目。
 
-### Technical Reward Details
+### 技术奖励详情
 
-**Reward Formula: Cobb-Douglas function**
+**奖励公式：柯布-道格拉斯函数**
 
 $$
 Rewards_{i,m} = \Gamma_m \times \mu \times \frac{\tau_{i}^\alpha \times \sigma_{i,m}^{1-\alpha}}{\sum_{j,m} \tau_{j}^\alpha \times \sigma_{j,m}^{1-\alpha}}
 $$
 
-Where:
+地址:
 
 * $$Rewards_{i,m}$$ = Rewards for user $$i$$ in market $$m$$
 * $$\Gamma_m$$ = Protocol Reserve Revenue for market $$m$$
@@ -64,23 +69,23 @@ Where:
 * $$\sigma_i$$ = Sum of **qualified** supply and borrow balance for user $$i$$
 * $$∑_{j,m}​$$ = Sum for all users $$j$$ in markets $$m$$
 
-**Qualifiable XVS Staked:**
+**符合条件的 XVS 质押：**
 
 $$
 \tau_i = \begin{cases} \min(100000, \tau_i) & \text{if } \tau_i \geq 1000 \\ 0 & \text{otherwise} \end{cases}
 $$
 
-**Qualifiable supply and borrow:**
+**合格的供应和借款：**
 
 $$
 \begin{align*} \sigma_{i,m} &= \min(\tau_i \times borrowMultiplier_m, borrowedAmount_{i,m}) \\ &+ \min(\tau_i \times supplyMultiplier_m, suppliedAmount_{i,m}) \end{align*}
 $$
 
-_Note: There will be a limit for the qualifiable supply and borrow amounts, set by the staked XVS limit and the market multiplier._
+_注意：合格供应量和借款金额将受到限制，由质押的 XVS 限额和市场乘数决定。_
 
-### User Reward Example:
+### 用户奖励示例：
 
-**Model Parameters**
+**模型参数**
 
 * $$α$$ = 0.5
 * $${\sum_{j,BTC} \tau_{j}^\alpha \times \sigma_{j,BTC}^{1-\alpha}}$$ = 744,164
@@ -96,15 +101,15 @@ _Note: There will be a limit for the qualifiable supply and borrow amounts, set 
 | Staked XVS      | 1,200       | $4,800    |
 | BTC Supply      | 0.097       | $2,500    |
 
-**Qualifiable Staked XVS**
+**合格的 已质押 XVS**
 
 $$\tau_i=min(100000,\text{ } 1200)$$
 
-**Qualifiable Supply and Borrow**
+**合格的供应和借贷**
 
 $$\sigma_{i,\text{BTC}} = \textit{min}(\text{\$9600}, \text{\$2500})$$
 
-**User Rewards**
+**用户奖励**
 
 $$Rewards_{i, BTC} = 8\times 0.2\times \dfrac{1,200^{0.5}\times 2,500^{0.5}}{744,164}$$
 
@@ -112,10 +117,10 @@ $$Rewards_{i, BTC} = \ 0.00372$$
 
 $$\text{User APY Increase} = \dfrac{0.00372}{0.097} = 3.88\%$$
 
-**Expected Rewards Function**
+**预期收益函数**
 
-Rewards in the Venus Prime program will automatically increase as a user increases its XVS Stake, so long as the amount staked and market participation fall within the limits outlined in the "Technical Reward Details" section below.
+只要质押金额和市场参与度在下方“技术奖励详情”部分概述的限制范围内，金星高级会员Venus Prime 计划中的奖励就会随着用户增加其 XVS 质押金额而自动增加。
 
-<figure><img src="../.gitbook/assets/apy_graph_transparent_2500_corrected_labels.png" alt=""><figcaption><p><em>Please note that the rewards can vary based on the total market participation and the amount of XVS staked, as illustrated by the formula and example above.</em></p></figcaption></figure>
+<figure><img src="../.gitbook/assets/apy_graph_transparent_2500_corrected_labels.png" alt=""><figcaption><p><em>请注意，奖励会根据市场总参与度和 XVS 质押数量而有所不同，如上文公式和示例所示。</em></p></figcaption></figure>
 
-The graph above demonstrates the relationship between an increased XVS staked amount and its effect on market rewards, assuming a constant participation of $2.5K USD in the BTC supply market. This helps visualize how an increase in the staked amount influences the APY.
+上图展示了 XVS 质押数量增加与市场奖励之间的关系，假设 BTC 供应市场参与度保持在 2500 美元不变。这有助于直观地了解质押数量的增加如何影响年化收益率 (APY)。
