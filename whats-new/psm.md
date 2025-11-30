@@ -1,132 +1,159 @@
-# Peg Stability Module
+# 锚定稳定模块
 
-## Overview
+## 概述
 
-The Peg Stability Module (PSM) is a crucial component of the Venus Protocol designed to maintain the value of the VAI stablecoin at $1. It functions similarly to the system provided by MakerDAO for DAI. The PSM contract utilizes two stablecoins: VAI (the target stablecoin) and USDT (used to help maintain the peg).
+锚定稳定模块 (PSM) 是 金星协议 的关键组件，旨在将 VAI 稳定币的价值维持在 1 美元。其功能类似于 MakerDAO 为 DAI 提供的系统。PSM 合约使用两种稳定币：VAI（目标稳定币）和 USDT（用于帮助维持锚定）。
 
-## Features
+## 功能
 
-**Convert Functionality**:
+**兑换功能**：
 
-* Users can exchange VAI and USDT with a "fixed" conversion rate of 1 VAI = $1.
-* Users can send VAI to the PSM and receive USDT if enough USDT is available in the PSM.
-* Users can send USDT to the PSM and receive VAI, provided that the PSM hasn't reached its maximum allowed minted VAI limit.
+* 用户可以使用 1 VAI = 1 美元的固定汇率兑换 VAI 和 USDT。
 
-**No Stability Fee**
+* 如果 PSM 中有足够的 USDT，用户可以向 PSM 发送 VAI 并接收 USDT。
 
-The VAI minted through the PSM does not accrue any interest or stability fee.
+* 如果 PSM 的 VAI 发行量未达到上限，用户可以向 PSM 发送 USDT 并接收 VAI。
 
-**Configurable Parameters**:
+**无稳定费**
 
-The PSM contract has three configurable variables set via the Venus Improvement Proposal (VIP):
+通过 PSM 发行的 VAI 不产生任何利息或稳定费。
 
-* `feeIn`: Fee charged when users send USDT to the PSM.
-* `feeOut`: Fee charged when users send VAI to the PSM.
-* `maxMintedVAI`: The maximum amount of VAI that the PSM can distribute. Conversions that exceed this limit will be reverted.
+**可配置参数**：
 
-**Fees Sent to Treasury**: The collected fees are sent to the Venus Treasury contract in each operation.
+PSM 合约有三个可配置变量，可通过 Venus 改进提案 (VIP) 设置：
 
-**Integration with Oracle Price**: The PSM considers the USD value of the stablecoin to peg VAI to its value accurately.
+* `feeIn`：用户向 PSM 发送 USDT 时收取的手续费。
 
-## Convert Functions
+* `feeOut`：用户向 PSM 发送 VAI 时收取的手续费。
 
-### Function `swapStableForVAI`
+* `maxMintedVAI`：PSM 可分发的 VAI 最大数量。超过此限制的转换将被撤销。
 
-This function allows users to exchange the paired stablecoin (USDT) for VAI.
+**费用发送至金库**：每次操作收取的手续费将发送至 金星协议 金库合约。
 
-**Expected Parameters**:
+**与预言机价格集成**：PSM 会考虑稳定币的美元价值，以准确地将 VAI 与其价值挂钩。
 
-* `receiver`: Address of the user who will receive the VAI.
-* `amount`: The amount of stablecoin (USDT) the sender wants to convert.
+## 转换函数
 
-The received stablecoins will be held by the PSM, and the fee specified by `feeIn` will be sent to the Treasury contract.
+### 函数 `swapStableForVAI`
 
-This function returns the amount of VAI transferred to the receiver.
+此函数允许用户将配对的稳定币 (USDT) 兑换为 VAI。
 
-### Function `swapVAIForStable`
+**预期参数**：
 
-This function enables users to exchange VAI for the paired stablecoin (USDT).
+* `receiver`：接收 VAI 的用户地址。
 
-**Expected Parameters**:
+* `amount`：发送方希望兑换的稳定币 (USDT) 数量。
 
-* `receiver`: Address of the user who will receive the stablecoin.
-* `amount`: The expected amount of stablecoin (USDT) the user should receive.
+收到的稳定币将由 PSM 持有，并且 `feeIn` 指定的手续费将发送到国库合约。
 
-The received VAI will be burnt, and the fee specified by `feeOut` will be sent to the Treasury contract.
+此函数返回已转账给接收方的 VAI 数量。
 
-This function returns the amount of VAI transferred from the sender (burnt + fee).
+### 函数 `swapVAIForStable`
 
-## Preview Functions
+此函数允许用户将 VAI 兑换为配对的稳定币 (USDT)。
 
-The PSM also offers preview functions that help users estimate the outcome of convert operations:
+**预期参数**：
+
+* `receiver`：接收稳定币的用户地址。
+
+* `amount`：用户预期收到的稳定币 (USDT) 数量。
+
+收到的 VAI 将被销毁，并且 `feeOut` 指定的手续费将发送到国库合约。
+
+此函数返回从发送方转出的 VAI 金额（已销毁金额 + 手续费）。
+
+## 预览功能
+
+PSM 还提供预览功能，帮助用户预估转换操作的结果：
 
 ### `previewSwapVAIForStable(uint256 stableTknAmount)`
 
-Returns the amount of VAI that the sender would transfer (burnt + fee) to receive the specified stablecoin amount.
+返回发送方为接收指定数量的稳定币而转移的 VAI 数量（已销毁 + 手续费）。
 
 ### `previewSwapStableForVAI(uint256 stableTknAmount)`
 
-Returns the amount of VAI that the receiver would receive after executing the `swapVAIForStable` function with the specified stablecoin amount.
+返回接收方在执行 `swapVAIForStable` 函数并使用指定数量的稳定币后将收到的 VAI 数量。
 
-## Integration of the Oracle Price
+## 集成预言机价格
 
-<figure><img src="../.gitbook/assets/psm.png" alt="USD price considered by the Peg Stability Module at Venus"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/psm.png" alt="金星锚定稳定模块考虑的美元价格"><figcaption></figcaption></figure>
 
-To protect the value of VAI and consider the USD value of the paired stablecoin, the PSM integrates with the Resilient Oracle. The following rules are applied:
+为了保护 VAI 的价值并考虑配对稳定币的美元价值，PSM 集成了 Resilient Oracle。以下规则适用：
 
-**swapVAIForStable** (the user sends VAI and receives USDT)
+**swapVAIForStable**（用户发送 VAI 并接收 USDT）
 
-* If the oracle price of the paired stablecoin is below $1, the conversion rate is 1 stablecoin = $1.
+* 如果配对稳定币的预言机价格低于 1 美元，则兑换率为 1 个稳定币 = 1 美元。
+
+{% hint style="info" %}
+**例如，如果 1 USDT = 0.90 美元**
+
+* 输入：用户希望收到 1 USDT。
+
+* 计算：考虑的转换率为 max(1, 0.9) => 1 USDT = 1 美元 = 1 VAI。
+
+* 用户需要发送 1 VAI（1 USDT * 1 美元/USDT）+ 手续费。
+
+* 假设 feeOut = 10%，则 0.10 VAI 将发送到金库，1 VAI 将被销毁，最终用户提供的 VAI 总数为 1.1 VAI。
+
+* 手续费的计算基于待销毁的“本金”VAI 金额（1 VAI = 1 美元）。
+
+{% endhint %}
+
+* 如果配对稳定币的预言机价格高于 1 美元，则转换率为 1 稳定币 = 预言机价格。
+
+{% hint style="info" %}
+**例如，如果 1 USDT = 1.1 美元**
+
+* 输入：用户希望收到 10 USDT。
+
+* 计算：考虑的兑换率为 max(1, 1.1) => 1 USDT = 1.1 美元 = 1.1 VAI。
+
+* 用户需要发送 11 VAI（10 USDT * 1.1 美元/USDT）+ 手续费。
+
+* 假设 feeOut = 10%，则 1.1 VAI 将发送到金库，10 VAI 将被销毁，最终用户提供的 VAI 总数为 12.1 VAI。
+
+* 手续费的计算基于待销毁的“本金”VAI 金额（11 VAI = 11 美元）。
+
+{% endhint %}
+
+**swapStableForVAI**（用户发送 USDT 并接收 VAI）
+
+* 如果配对稳定币的预言机价格低于 1 美元，则兑换率为 1 个稳定币 = 预言机价格。
 
 {% hint style="info" %}
 **For example if 1 USDT = $0.90**
 
-* Input: The user wishes to receive 1 USDT.
-* Calculation: The conversion rate to consider is max(1, 0.9) => 1 USDT = $1 = 1 VAI.
-* The user needs to send 1 VAI (1 USDT \* 1 $/USDT) + fees.
-* Assuming feeOut = 10%, 0.10 VAI will be sent to the treasury, and 1 VAI will be burnt, resulting in a total of 1.1 VAI provided by the user.
-* The fee is calculated considering the "principal" VAI amount that we are to burn (1 VAI = $1).
+* 输入：用户希望向 PSM 发送 10 USDT。
+
+* 计算：考虑的兑换率为 min(1, 0.9) => 10 USDT = 9 美元 = 9 VAI。
+
+* 用户将收到 9 VAI (10 USDT * 0.9) - 手续费。
+
+* 假设 feeIn = 10%，则 0.9 VAI 将发送到金库，8.1 VAI 将发送给用户。
+
+* 手续费的计算基于“本金”VAI 金额 (9 VAI = 9 美元)。
+
 {% endhint %}
 
-* If the oracle price of the paired stablecoin is above $1, the conversion rate is 1 stablecoin = oracle price.
+* 如果配对稳定币的预言机价格高于 1 美元，则兑换率为 1 个稳定币 = 1 美元。
 
 {% hint style="info" %}
-**For example if 1 USDT = $1.1**
 
-* Input: The user desires to receive 10 USDT.
-* Calculation: The conversion rate to consider is max(1, 1.1) => 1 USDT = $1.1 = 1.1 VAI.
-* The user needs to send 11 VAI (10 USDT \* 1.1 $/USDT) + fees.
-* Assuming feeOut = 10%, 1.1 VAI will be sent to the treasury, and 10 VAI will be burnt, resulting in a total of 12.1 VAI provided by the user.
-* The fee is calculated considering the "principal" VAI amount that we are to burn (11 VAI = $11).
-{% endhint %}
+**例如，如果 1 USDT = 1.1 美元**
 
-**swapStableForVAI** (the user sends USDT and receives VAI)
+* 1 USDT = 1.1 美元（根据我们的预言机计算的汇率）
 
-* If the oracle price of the paired stablecoin is below $1, the conversion rate is 1 stablecoin = oracle price.
+* 输入：用户希望向 PSM 发送 10 USDT。
 
-{% hint style="info" %}
-**For example if 1 USDT = $0.90**
+* 计算：使用的汇率为 min(1, 1.1) => 10 USDT = 10 美元 = 10 VAI。
 
-* Input: The user wishes to send 10 USDT to the PSM.
-* Calculation: The conversion rate to consider is min(1, 0.9) => 10 USDT = $9 = 9 VAI.
-* The user will receive 9 VAI (10 USDT \* 0.9) - fees.
-* Assuming feeIn = 10%, 0.9 VAI will be sent to the treasury, and 8.1 VAI will be sent to the user.
-* The fee is calculated considering the "principal" VAI amount (9 VAI = $9).
-{% endhint %}
+* 用户将收到 10 VAI (10 USDT * 1.0) - 手续费。
 
-* If the oracle price of the paired stablecoin is above $1, the conversion rate is 1 stablecoin = $1.
+* 假设 feeIn = 10%，则 1 VAI 将发送到金库，9 VAI 将发送给用户。
 
-{% hint style="info" %}
-**For example if 1 USDT = $1.1**
-
-* 1 USDT = $1.1 (conversion rate according to our oracles)
-* Input: The user wishes to send 10 USDT to the PSM.
-* Calculation: The conversion rate to consider is min(1, 1.1) => 10 USDT = $10 = 10 VAI.
-* The user will receive 10 VAI (10 USDT \* 1.0) - fees.
-* Assuming feeIn = 10%, 1 VAI will be sent to the treasury, and 9 VAI will be sent to the user.
-* The fee is calculated considering the "principal" VAI amount (10 VAI = $10).
+* 手续费的计算基于“本金”VAI 金额 (10 VAI = 10 美元)。
 {% endhint %}
 
 {% hint style="warning" %}
-This documentation is designed to be user-friendly and does not cover the technical implementation details of the Peg Stability Module. For technical information, developers and smart contract auditors can refer to the [smart contract code](https://github.com/VenusProtocol/venus-protocol/blob/develop/contracts/PegStability/PegStability.sol).
+本文档旨在方便用户使用，并未涵盖锚定稳定性模块的技术实现细节。有关技术信息，开发人员和智能合约审计人员可以参考[智能合约代码]。(https://github.com/VenusProtocol/venus-protocol/blob/develop/contracts/PegStability/PegStability.sol).
 {% endhint %}
