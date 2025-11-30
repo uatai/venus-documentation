@@ -1,24 +1,24 @@
-# Isolated Pools
+# 独立资金池
 
-### Overview
+### 概述
 
-Isolated Pools are made up of separate collections of assets with tailored risk management configurations. This design offers users broader opportunities to manage risk and allocate assets to earn yield. Moreover, it prevents hypothetical failures from affecting the liquidity of the entire protocol as they are confined to isolated markets.
+独立资金池由多个独立的资产集合组成，每个集合都配备定制的风险管理配置。这种设计为用户提供了更广泛的风险管理和资产配置机会，从而更好地获取收益。此外，由于风险仅限于隔离市场，因此可以防止假设性故障影响整个协议的流动性。
 
-Isolated Pools also offer custom rewards for each market in the pool, incentivizing users accordingly.
+独立资金池还会为池中的每个市场提供定制奖励，从而相应地激励用户。
 
-### Isolated Pools Architecture
+### 独立资金池架构
 
-The Isolated Pools system is based on the *PoolRegistry* contract. It maintains a directory of isolated lending pools, allows the creation and registration of new pools, and offers getter methods to fetch pool details.
+独立资金池系统基于 *PoolRegistry* 合约。它维护一个独立借贷资金池目录，允许创建和注册新的资金池，并提供获取资金池详细信息的 getter 方法。
 
-To add a new market to an existing lending pool, the PoolRegistry deploys a JumpRateModelV2 or a WhitePaperInterestRateModel contract, deploying the upgradable VToken for the market before gaining the approval of the market's Comptroller.
+要向现有借贷池添加新市场，PoolRegistry 会部署 JumpRateModelV2 或 WhitePaperInterestRateModel 合约，在获得市场监管机构的批准之前，为该市场部署可升级的 VToken。
 
-<figure><img src="../.gitbook/assets/fd111ec8-a057-490c-bb3d-d1a8c026bb12.png" alt=""><figcaption><p><em>Isolated Lending Pools Architecture</em></p></figcaption></figure>
+<figure><img src="../.gitbook/assets/fd111ec8-a057-490c-bb3d-d1a8c026bb12.png" alt=""><figcaption><p><em>独立资金池架构</em></p></figcaption></figure>
 
-### User Actions
+### 用户操作
 
-Users can perform the following actions on any market in a pool:
+用户可以对资金池中的任何市场执行以下操作：
 
-1. **Deposit**: Users can deposit an asset, receiving vTokens that correspond to the liquidity deposited. These vTokens accrue interest until they are burned on redeem or liquidated.
-2. **Borrow**: Users can borrow assets, in exchange for locked collateral.
-3. **Redeem**: Users can redeem vTokens for the underlying asset based on the exchange rate.
-4. **Repay Borrow**: Users can repay the borrowed asset and accrued interest.
+1. **存款**：用户可以存入资产，并获得与存入流动性对应的 vToken。这些 vToken 会累积利息，直到赎回或清算时被销毁。
+2. **借贷**：用户可以借用资产，但需提供锁定的抵押品。
+3. **兑换**：用户可以根据汇率将 vToken 兑换为相应的基础资产。
+4. **还款借款**：用户可以偿还借入的资产和应计利息。
