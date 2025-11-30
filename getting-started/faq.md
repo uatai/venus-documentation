@@ -1,45 +1,45 @@
 # FAQ
 
-### **What is Venus Protocol?**
+### **什么是金星协议？**
 
-Venus Protocol is a trusted decentralized finance lending and borrowing protocol that's deployed on the BNB Chain. Initially launched in 2020, it combines the stablecoin minting facility of Maker and the algorithmic money markets developed by Compound, providing a simplified user experience and core capabilities in a single application.
+金星协议是一个值得信赖的去中心化金融借贷协议，部署在 BNB 链上。该协议最初于 2020 年推出，它结合了 Maker 的稳定币铸造功能和 Compound 开发的算法货币市场，在一个应用程序中提供简化的用户体验和核心功能。
 
-### How do I interact with Venus Protocol?
+### 我该如何与金星协议互动？
 
-Interacting with Venus V4 is straightforward. Supply your chosen asset and the amount to start earning interest. Additionally, once you supply assets, you can also borrow against them. Any interest earned from supplying assets can help offset the interest you accrue when borrowing.
+使用 金星协议 V4 非常简单。只需提供您选择的资产和金额即可开始赚取利息。此外，提供资产后，你还可以用这些资产作抵押进行借贷。通过提供资产获得的利息可以用来抵消您借贷时产生的利息。
 
-### Where are my supplied funds stored?
+### 我提供的资金存放在哪里？
 
-Your supplied funds are stored in a smart contract on the BNB Chain. The contract's code is public, open-source, and has been formally verified and audited by external auditors. You can withdraw your funds on demand or receive Venus Tokens (vTokens) representing your stake. vTokens are as freely tradable as any other cryptographic asset on BNB Chain.
+你提供的资金存储在 BNB 链上的智能合约中。该合约的代码公开开源，并已通过外部审计机构的正式验证和审计。你可以随时提取资金，或获得代表你权益的 金星 代币 (vToken)。vToken 与 BNB 链上的任何其他加密资产一样，可以自由交易。
 
-### **What is the cost of interacting with Venus Protocol?**
+### **使用 金星协议 的费用是多少？**
 
-Transactions on the Venus V4 protocol require BNB Chain fees, which depend on network congestion and the complexity of the transaction.
+金星协议 V4 协议上的交易需要 BNB 链上交易费，费用取决于网络拥塞情况和交易的复杂程度。
 
-### **Is there any risk?**
+### **是否存在风险？**
 
-No platform can be considered entirely risk-free. Risks associated with Venus V4 include smart contract risk and liquidation risk. However, every possible step has been taken to minimize these risks, including making the protocol code public and conducting thorough audits.
+任何平台都不能被认为是完全没有风险的。金星协议 V4 的风险包括智能合约风险和清算风险。然而，我们已采取一切可能的措施来降低这些风险，包括公开协议代码和进行彻底的审计。
 
-### **What are the key areas Venus Protocol V4 aims to improve?**
+### **金星协议 V4 旨在改进哪些关键领域？**
 
-Venus Protocol focuses on improving three main areas:
+金星协议主要着重改善以下三个方面：
 
-* **Risk Management:** Prioritizing the risk management , Venus introduces new features like Isolated Pools and more sophisticated risk parameters.
-* **Decentralization:** The governance model has been enhanced by introducing fast-track VIPs, role-based access control, and a fine-grained pause mechanism.
-* **User Experience:** The latest version offers an enhanced user interface, a more effective reward system, and isolated lending. Future releases for V4 will feature stable rate borrowing and the Venus Prime Soulbound Token, all aimed at providing a smooth user experience.
+* **风险管理:** 金星协议将风险管理放在首位，引入了隔离池等新功能和更复杂的风险参数。
+* **Decentralization:** 通过引入快速通道 VIP、基于角色的访问控制和细粒度的暂停机制，治理模型得到了增强。
+* **User Experience:** 最新版本提供更友好的用户界面、更有效的奖励机制以及独立借贷功能。V4 的后续版本将推出稳定利率借贷和 金星协议高级用户Venus Prime Soulbound 代币，所有这些都旨在提供流畅的用户体验。
 
-### **What is the Resilient Price Oracle?**
+### **什么是弹性价格预言机？**
 
-The Resilient Price Oracle introduced in Venus V4 fetches prices from multiple sources and validates them, providing a more reliable price indicator and protecting against price manipulations. It supports the integration of new price oracles and allows enabling and disabling price oracles per token.
+金星协议 V4 中引入的弹性价格预言机从多个数据源获取价格并进行验证，从而提供更可靠的价格指标并防止价格操纵。它支持集成新的价格预言机，并允许为每个代币启用和禁用价格预言机。
 
-### **What are Isolated Pools?**
+### **什么是独立资金池？**
 
-Isolated Pools are a new feature in Venus V4, designed to overcome the limitations of a single core pool. Each Isolated Pool is an independent collection of assets with custom risk management configurations. This setup allows users to better manage their risk and earn yield, while also preventing failures in one market from impacting others.
+独立资金池是 金星协议 V4 的一项新功能，旨在克服单一核心资产池的局限性。每个独立资产池都是一个独立的资产集合，并拥有自定义的风险管理配置。这种设置使用户能够更好地管理风险并获得收益，同时还能防止一个市场的崩溃影响其他市场。
 
-### **What is the Risk Fund?**
+### **什么是风险基金？**
 
-In Venus V4, a risk fund is maintained for each pool. A percentage of the protocol's revenue is deposited into this fund, aiming to counterbalance bad debt and prevent potential market insolvencies.
+在 金星协议 V4 中，每个资金池都设有风险基金。协议收入的一部分会存入该基金，旨在抵消坏账并防止潜在的市场破产。
 
-### **What changes were made to the governance model in Venus V4?**
+### **金星协议 V4 对治理模式进行了哪些更改？**
 
-Venus V4 features a new governance model that introduces fast-track Venus Improvement Proposals (VIPs), role-based access control, and a fine-grained pause mechanism. This new model allows for more agile and accurate decision-making, ensuring the protocol remains competitive and secure.
+金星协议 V4 采用全新的治理模型，引入了快速审批的 金星 改进提案 (VIP)、基于角色的访问控制以及细粒度的暂停机制。这种新模型能够实现更敏捷、更精准的决策，确保协议保持竞争力并保障安全。
