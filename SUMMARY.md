@@ -1,6 +1,6 @@
 # Table of contents
 
-## Getting Started
+## 入门
 
 * [Overview](README.md)
 * [Whitepaper V4](https://github.com/VenusProtocol/venus-protocol-documentation/blob/main/whitepapers/Venus-whitepaper-v4.pdf)
