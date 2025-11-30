@@ -1,70 +1,78 @@
-# E-Mode in Venus Protocol
+# 金星协议中的E模式
 
 {% hint style="info" %}
-Only available on BNB Chain Core Pool.
+仅在 BNB 链核心池上可用。
 {% endhint %}
 
-## Overview
+## 概述
 
-The Venus Protocol introduces **E-Mode (Efficiency Mode)** to the **BNB Chain Core Pool**, a new feature designed to **boost capital efficiency** for specific asset pools, such as stablecoins or ETH-based tokens. It also aims to **isolate risk** within these pools while reusing liquidity from the Core Pool.
+金星协议 为 **BNB 链核心池** 引入了 **E-Mode（效率E模式）**，这项新功能旨在**提升特定资产池（例如稳定币或基于 ETH 的代币）的资金效率**。它还旨在**隔离这些资产池中的风险**，同时重用来自核心池的流动性。
 
-E-Mode allows users to activate specialized **pools** within the Core Pool, each with **customized risk settings**. By selecting an E-Mode pool, your eligible assets follow optimized parameters for **collateral factor (CF)** and **liquidation threshold (LT)**, which are **increased**, while the **liquidation incentive (LI) is decreased**, making borrowing more efficient and cost-effective while keeping risks contained.
+效率E模式 允许用户在核心资金池内激活专门的**资金池**，每个资金池都具有**定制的风险设置**。选择 效率E模式 资金池后，你的合格资产将遵循优化的**抵押因子 (CF)**和**清算门槛 (LT)**参数，这些参数将**提高**，而**清算激励 (LI)**则会降低，从而在控制风险的同时，提高借贷效率和成本效益。
 
-## What’s Changed
+## 发生了哪些变化？
 
-To support E-Mode, the Core Pool itself has been **enhanced with new risk mechanics**:
+为了支持效率E模式，核心池本身已**通过新的风险机制进行了增强**：
 
-* **Liquidation Threshold (LT) Support** – Similar to isolated pools, LT is now used to determine liquidation conditions, separate from CF.
-* **Per-Market Liquidation Incentive (LI)** – LI is no longer global; each market has its own incentive, configurable by Governance.
-* **User-Specific Risk Factors** – Effective CF, LT, and LI now depend on the user’s selected E-Mode pool, giving each user a tailored borrowing and collateral profile.
+* **清算门槛 (LT) 支持** – 与独立资金池类似，LT 现在用于确定清算条件，与 CF 分开。
 
-## Architecture Overview
+* **单市场清算激励 (LI)** – LI 不再是全局性的；每个市场都有其自身的激励机制，可由治理部门配置。
 
-E-Mode operates as a **lightweight overlay on the Core Pool**, enabling per-user risk management without moving funds to separate pools.
+* **用户特定风险因素** – 有效的 CF、LT 和 LI 现在取决于用户选择的 效率E模式E-Mode 资金池，从而为每位用户提供量身定制的借款和抵押品方案。
 
-* **Core Pool (poolId = 0)**: The default pool for all users. Supports **per-market LIs** and **LT**, even for non-E-Mode users.
-* **E-Mode Pools (poolId > 0)**: Each pool defines a set of assets (e.g., Stablecoin Pool, ETH Pool) with customized CF, LT, and LI for each asset in the pool. Users select a pool to activate its risk parameters.
-* **Pool-Market**: Markets are tracked per pool, allowing **pool-specific overrides** while preserving Core Pool compatibility.
-* **User Pool Tracking**: Each user is associated with exactly one pool at a time via `userPoolId`. Switching pools updates this mapping and triggers the relevant risk rules.
+## 架构概述
 
-<figure><img src="../.gitbook/assets/emode-groups.svg" alt=""><figcaption><p><em>Example of E-Mode pools - assets highlighted in red are not available for borrowing in the pool</em></p></figcaption></figure>
+效率E模式E-Mode 作为核心资金池的**轻量级叠加层**运行，无需将资金转移到单独的资金池即可实现每个用户的风险管理。
 
-This architecture ensures **flexibility, backward compatibility, and gas efficiency**, while giving users **higher borrowing efficiency and better risk isolation**.
+* **核心池 (poolId = 0)**：所有用户的默认池。支持**每个市场的风险指数 (LI)** 和风险等级 (LT)**，即使对于非 E-Mode 用户也是如此。
 
-## Impact on Users
+* **效率E模式E-Mode 池 (poolId > 0)**：每个池定义一组资产（例如，稳定币池、ETH 池），并为池中的每种资产设置自定义的风险系数 (CF)、风险等级 (LT) 和风险等级 (LI)。用户选择一个池以激活其风险参数。
 
-* **No Action Needed** – Users remain in the Core Pool by default. Their positions continue to function normally without switching to E-Mode.
-* **Optional Upgrade** – By entering an E-Mode pool, your account will use its risk settings for approved assets.
-* **Note: Improved Risk Mechanics** – Even without switching, Core Pool users now benefit from **per-market liquidation incentives (LI)** and **liquidation threshold (LT) support**, making liquidation calculations and account health evaluations more precise.
+* **池-市场**：市场按池进行跟踪，允许**池特定的覆盖**，同时保持与核心池的兼容性。
 
-## Impact on Liquidators
+* **用户池跟踪**：每个用户一次只能通过 `userPoolId` 关联到一个池。切换池会更新此映射并触发相关的风险规则。
 
-E-Mode introduces more precision and flexibility for liquidators in the Core Pool:
+<figure><img src="../.gitbook/assets/emode-groups.svg" alt=""><figcaption><p><em>效率E模式E-Mode 资产池示例 - 以红色突出显示的资产在资产池中不可借贷</em></p></figcaption></figure>
 
-* **Per-Market Liquidation Incentives** – Liquidation incentives (LI) are now set on a per-market basis rather than being global. Before liquidating, liquidators should check the LI for each asset. If a user is in an E-Mode pool and uses collateral that isn’t enabled in that pool, the LI for that asset can be zero.
-* **Liquidation Thresholds (LT)** – LT now determines when accounts can be liquidated, replacing the older CF-based check for liquidations.
-* **User-Specific Risk Factors** – Effective CF, LT, and LI can vary per user depending on their E-Mode pool, making liquidation decisions more targeted and strategic.
+该架构确保了**灵活性、向后兼容性和燃气效率**，同时为用户提供**更高的借贷效率和更好的风险隔离**。
 
-This gives liquidators **smarter targeting, higher transparency, and better reward optimization** across markets.
+## 对用户的影响
 
-## How It Works
+* **无需操作** – 用户默认保留在核心池中。他们的持仓将继续正常运作，无需切换到效率E模式。
 
-1. **Default in the Core Pool**  
-   All users start in the Core Pool and can continue their positions normally.
+* **可选升级** – 进入效率E模式池后，你的账户将使用其风险设置来管理已批准的资产。
 
-2. **Select an E-Mode Pool**  
-   Explore available pools (e.g., Stablecoin) via the Venus App or Venus Lens.
+* **注意：风险机制改进** – 即使不切换，核心池用户现在也能享受到**按市场结算激励 (LI)**和**结算门槛 (LT)**支持**，从而使结算计算和账户健康状况评估更加精准。
 
-3. **Check Your Borrows**  
-   Borrowed assets must be approved in the selected pool. Repay any disallowed assets first.
+## 对清算人的影响
 
-4. **Check Core Pool Fallback**
-   Each E-Mode pool has a flag `allowCorePoolFallback` that determines whether assets not included in the E-Mode pool will use the Core Pool’s risk factors (i.e. CF, LT, LI). If fallback is not allowed, users must exit these markets (i.e., remove such assets as collateral) to ensure they aren’t unintentionally liquidated.
+效率E模式E-Mode 为核心池中的清算人引入了更高的精确度和灵活性：
 
-5. **Enter E-Mode**  
-   Eligible assets follow E-Mode risk settings, while the behavior of assets not included in the E-Mode pool depends on the `allowCorePoolFallback` flag.
+* **按市场清算激励** – 清算激励 (LI) 现在按市场单独设置，而非全局设置。清算前，清算人应检查每项资产的 LI。如果用户在 效率E模式E-Mode 资金池中使用了该资金池未启用的抵押品，则该资产的 LI 可能为零。
+* **清算阈值 (LT)** – LT 现在用于决定账户何时可以清算，取代了之前基于现金流量 (CF) 的清算检查。
 
-6. **Enjoy Higher Efficiency**  
-   Borrow and manage positions with optimized collateral and liquidation rules.
+* **用户特定风险因素** – 有效的现金流量 (CF)、清算阈值 (LT) 和清算指数 (LI) 会根据用户的电子模式资金池而有所不同，从而使清算决策更具针对性和策略性。
 
-For a **detailed technical explanation**, including implementation and user examples, check out the [full E-Mode technical article](../technical-reference/reference-technical-articles/emode.md).
+这使得清算人能够在各个市场实现**更精准的目标定位、更高的透明度和更好的收益优化**。
+
+## 工作原理
+
+1. **核心池中的默认值**  
+   所有用户都从核心池开始，可以正常继续持有他们的仓位。
+
+2. **选择 效率E模式 资金池**  
+   通过 金星协议 App应用 或 金星 Lens 探索可用的资金池（例如稳定币）。
+
+3. **检查你的借款**  
+   借入的资产必须经过所选资产池的批准。请先偿还任何不符合规定的资产。
+
+4. **检查核心池回滚**
+   每个 效率E模式E-Mode 资金池都有一个 `allowCorePoolFallback` 标志，用于决定是否允许未包含在 效率E模式E-Mode 资金池中的资产使用核心资金池的风险因子（例如 CF、LT、LI）。如果不允许回退，用户必须退出这些市场（即移除此类资产作为抵押品），以确保这些资产不会被意外清算。
+
+5. **进入 效率E模式E-Mode**  
+   符合条件的资产遵循 效率E模式E-Mode 风险设置，而未包含在 效率E模式E-Mode 池中的资产的行为取决于 `allowCorePoolFallback` 标志。
+
+6. **享受更高效率**  
+   利用优化的抵押品和清算规则进行借贷和管理头寸。
+
+有关**详细的技术说明**，包括实现和用户示例，请查看[完整的 效率E模式E-Mode 技术文章]。(../technical-reference/reference-technical-articles/emode.md).
