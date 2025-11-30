@@ -1,19 +1,21 @@
-# Reward Distributor
+# 奖励分配者
 
-### Overview
+### 概述
 
-The Venus Reward Distributor allows for the configuration and management of rewards for lenders and borrowers, dependent on the user's activity within the associated markets. The addition of one or more reward distributors to a pool is facilitated through the addRewardsDistributor feature, enhancing the protocol's capability to customize distribution rates on a per-market basis.
+金星协议奖励分配器允许根据用户在相关市场中的活跃度，配置和管理贷款人和借款人的奖励。通过addRewardsDistributor功能，可以方便地向资金池中添加一个或多个奖励分配器，从而增强协议按市场自定义分配率的能力。
 
-In the Venus Protocol V4, the reward system has been upgraded to allow for rewards per market and lending activity, as well as the support for multiple reward tokens. This revamp serves to provide further incentives and yield opportunities for users.
+在 金星协议 V4 中，奖励系统已升级，允许根据市场和借贷活动获得奖励，并支持多种奖励代币。此次改进旨在为用户提供更多激励和收益机会。
 
-### Reward Distributor Architecture
+### 奖励分配器架构
 
-The Rewards Distributor system is centered around the `RewardsDistributor` contract. This contract maintains the functionality to configure, track and distribute rewards to users based on their borrow and supply activities within the protocol. Upon initialization, each `RewardsDistributor` proxy is associated with a specific reward token and Comptroller, from which point the reward token can be disseminated to users that supply or borrow in the corresponding pool.
+奖励分发系统以 `RewardsDistributor` 合约为核心。该合约负责配置、跟踪和分发奖励，奖励根据用户在协议内的借贷和供应活动发放。初始化时，每个 `RewardsDistributor` 代理都关联一个特定的奖励代币和一位管理员，奖励代币由此可以分发给在相应资金池中进行借贷的用户。
 
-### User Interactions
+### 用户交互
 
-Users have a range of possible interactions with the Reward Distributor:
+用户与奖励发放者之间有多种可能的互动方式：
 
-* **Supply:** Users can supply assets and earn rewards based on the supply speeds set for the reward token.
-* **Borrow:** Users can borrow assets and earn rewards according to the configured borrow speed of the reward token.
-* **Claim Rewards:** Users can claim their accrued reward tokens for individual markets, a feature that significantly reduces gas fees and streamlines the reward claiming process.
+* **供应：** 用户可以供应资产，并根据奖励代币的供应速度赚取奖励。
+
+* **借贷：** 用户可以借入资产，并根据奖励代币的借贷速度赚取奖励。
+
+* **领取奖励：** 用户可以领取在各个市场累积的奖励代币，此功能可显著降低交易费 gas 费用并简化奖励领取流程。
