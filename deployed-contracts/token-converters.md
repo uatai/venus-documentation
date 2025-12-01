@@ -1,6 +1,6 @@
-# Token Converters - Deployed Contracts
+# 代币转换器 - 已部署合约
 
-## BNB Chain Mainnet
+## BNB 链主网
 
 * RiskFundConverter: [`0xA5622D276CcbB8d9BBE3D1ffd1BB11a0032E53F0`](https://bscscan.com/address/0xA5622D276CcbB8d9BBE3D1ffd1BB11a0032E53F0)
 * XVSVaultTreasury: [`0x269ff7818DB317f60E386D2be0B259e1a324a40a`](https://bscscan.com/address/0x269ff7818DB317f60E386D2be0B259e1a324a40a)
@@ -13,7 +13,7 @@
 * WBNBBurnConverter: [`0x9eF79830e626C8ccA7e46DCEd1F90e51E7cFCeBE`](https://bscscan.com/address/0x9eF79830e626C8ccA7e46DCEd1F90e51E7cFCeBE)
 * ConverterNetwork: [`0xF7Caad5CeB0209165f2dFE71c92aDe14d0F15995`](https://bscscan.com/address/0xF7Caad5CeB0209165f2dFE71c92aDe14d0F15995)
 
-## Ethereum
+## 以太坊
 
 * XVSVaultTreasury: [`0xaE39C38AF957338b3cEE2b3E5d825ea88df02EfE`](https://etherscan.io/address/0xaE39C38AF957338b3cEE2b3E5d825ea88df02EfE)
 * SingleTokenConverterBeacon: [`0x5C0b5D09388F2BA6441E74D40666C4d96e4527D1`](https://etherscan.io/address/0x5C0b5D09388F2BA6441E74D40666C4d96e4527D1)
@@ -35,7 +35,7 @@
 * XVSVaultConverter: [`0x9c5A7aB705EA40876c1B292630a3ff2e0c213DB1`](https://arbiscan.io/address/0x9c5A7aB705EA40876c1B292630a3ff2e0c213DB1)
 * ConverterNetwork: [`0x2F6672C9A0988748b0172D97961BecfD9DC6D6d5`](https://arbiscan.io/address/0x2F6672C9A0988748b0172D97961BecfD9DC6D6d5)
 
-## BNB Chain Testnet
+## 币安链测试网
 
 * RiskFundConverter: [`0x32Fbf7bBbd79355B86741E3181ef8c1D9bD309Bb`](https://testnet.bscscan.com/address/0x32Fbf7bBbd79355B86741E3181ef8c1D9bD309Bb)
 * XVSVaultTreasury: [`0x317c6C4c9AA7F87170754DB08b4804dD689B68bF`](https://testnet.bscscan.com/address/0x317c6C4c9AA7F87170754DB08b4804dD689B68bF)

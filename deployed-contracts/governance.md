@@ -1,6 +1,6 @@
-# Governance - Deployed Contracts
+# 治理 - 已部署合约
 
-## BNB Chain Mainnet
+## BNB 链主网
 
 * Governor Bravo Delegator: [`0x2d56dc077072b53571b8252008c60e945108c75a`](https://bscscan.com/address/0x2d56dc077072b53571b8252008c60e945108c75a)
 * Access Control Manager: [`0x4788629abc6cfca10f9f969efdeaa1cf70c23555`](https://bscscan.com/address/0x4788629abc6cfca10f9f969efdeaa1cf70c23555)
@@ -15,7 +15,7 @@
 * RiskStewardReceiver: [`0xBa2a43279a228cf9cD94d072777d8d98e7e0a229`](https://bscscan.com/address/0xBa2a43279a228cf9cD94d072777d8d98e7e0a229)
 * MarketCapsRiskSteward: [`0xE7252dccd79F2A555E314B9cdd440745b697D562`](https://bscscan.com/address/0xE7252dccd79F2A555E314B9cdd440745b697D562)
 
-## BNB Chain Testnet
+## BNB 链测试网
 
 * Governor Bravo Delegator: [`0x5573422a1a59385c247ec3a66b93b7c08ec2f8f2`](https://testnet.bscscan.com/address/0x5573422a1a59385c247ec3a66b93b7c08ec2f8f2)
 * Access Control Manager: [`0x45f8a08F534f34A97187626E05d4b6648Eeaa9AA`](https://testnet.bscscan.com/address/0x45f8a08F534f34A97187626E05d4b6648Eeaa9AA)
@@ -26,7 +26,7 @@
 * RiskStewardReceiver: [`0x31DEb4D1326838522697f7a012992f0824d80f2b`](https://testnet.bscscan.com/address/0x31DEb4D1326838522697f7a012992f0824d80f2b)
 * MarketCapsRiskSteward: [`0x9b40390771cAeEa69DE55EEd176aeDC72d70cA3E`](https://testnet.bscscan.com/address/0x9b40390771cAeEa69DE55EEd176aeDC72d70cA3E)
 
-## Ethereum mainnet
+## 以太坊主网
 
 * Access Control Manager: [`0x230058da2D23eb8836EC5DB7037ef7250c56E25E`](https://etherscan.io/address/0x230058da2D23eb8836EC5DB7037ef7250c56E25E)
 * Guardian: [`0x285960C5B22fD66A736C7136967A3eB15e93CC67`](https://etherscan.io/address/0x285960C5B22fD66A736C7136967A3eB15e93CC67)
@@ -38,7 +38,7 @@
 * RiskStewardReceiver: [`0x5086Dc718D1288E4cc4F6a75991E4a0bD0611bF1`](https://etherscan.io/address/0x5086Dc718D1288E4cc4F6a75991E4a0bD0611bF1)
 * MarketCapsRiskSteward: [`0x7191b4602Fe9d36E1A4b2cb84D0c80C543F13f9A`](https://etherscan.io/address/0x7191b4602Fe9d36E1A4b2cb84D0c80C543F13f9A)
 
-## Sepolia (Ethereum testnet)
+## Sepolia（以太坊测试网）
 
 * Access Control Manager: [`0xbf705C00578d43B6147ab4eaE04DBBEd1ccCdc96`](https://sepolia.etherscan.io/address/0xbf705C00578d43B6147ab4eaE04DBBEd1ccCdc96)
 * Guardian: [`0x94fa6078b6b8a26f0b6edffbe6501b22a10470fb`](https://sepolia.etherscan.io/address/0x94fa6078b6b8a26f0b6edffbe6501b22a10470fb)
@@ -50,7 +50,7 @@
 * RiskStewardReceiver: [`0xDF1807d323Dd2E2871e8b394c8F7595E097e1C73`](https://sepolia.etherscan.io/address/0xDF1807d323Dd2E2871e8b394c8F7595E097e1C73)
 * MarketCapsRiskSteward: [`0xEa687c54321Db5b20CA544f38f08E429a4bfCBc8`](https://sepolia.etherscan.io/address/0xEa687c54321Db5b20CA544f38f08E429a4bfCBc8)
 
-## opBNB mainnet
+## opBNB 主网
 
 * Access Control Manager: [`0xA60Deae5344F1152426cA440fb6552eA0e3005D6`](https://opbnbscan.com/address/0xA60Deae5344F1152426cA440fb6552eA0e3005D6)
 * Guardian: [`0xC46796a21a3A9FAB6546aF3434F2eBfFd0604207`](https://opbnbscan.com/address/0xC46796a21a3A9FAB6546aF3434F2eBfFd0604207)
@@ -60,7 +60,7 @@
 * Omnichain Governance Executor: [`0x82598878Adc43F1013A27484E61ad663c5d50A03`](https://opbnbscan.com/address/0x82598878Adc43F1013A27484E61ad663c5d50A03)
 * Omnichain Executor owner proxy: [`0xf7e4c81Cf4A03d52472a4d00c3d9Ef35aF127E45`](https://opbnbscan.com/address/0xf7e4c81Cf4A03d52472a4d00c3d9Ef35aF127E45)
 
-## opBNB testnet
+## opBNB 测试网
 
 * Access Control Manager: [`0x049f77F7046266d27C3bC96376f53C17Ef09c986`](https://testnet.opbnbscan.com/address/0x049f77F7046266d27C3bC96376f53C17Ef09c986)
 * Guardian: [`0xb15f6EfEbC276A3b9805df81b5FB3D50C2A62BDf`](https://testnet.opbnbscan.com/address/0xb15f6EfEbC276A3b9805df81b5FB3D50C2A62BDf)
@@ -92,7 +92,7 @@
 * RiskStewardReceiver: [`0xE6b7B1846106605fdfaB3a9F407dd64bed6917a6`](https://sepolia.arbiscan.io/address/0xE6b7B1846106605fdfaB3a9F407dd64bed6917a6)
 * MarketCapsRiskSteward: [`0xe739ff9CFa2CFA24fb7816133e1CBe7046A37Ecc`](https://sepolia.arbiscan.io/address/0xe739ff9CFa2CFA24fb7816133e1CBe7046A37Ecc)
 
-## ZKsync Mainnet
+## ZKsync 主网
 
 * Access Control Manager: [`0x526159A92A82afE5327d37Ef446b68FD9a5cA914`](https://explorer.zksync.io/address/0x526159A92A82afE5327d37Ef446b68FD9a5cA914)
 * Guardian: [`0x751Aa759cfBB6CE71A43b48e40e1cCcFC66Ba4aa`](https://explorer.zksync.io/address/0x751Aa759cfBB6CE71A43b48e40e1cCcFC66Ba4aa)
@@ -114,7 +114,7 @@
 * RiskStewardReceiver: [`0x25483111881c431492D010a9071Ce6C84C3b90A6`](https://sepolia.explorer.zksync.io/address/0x25483111881c431492D010a9071Ce6C84C3b90A6)
 * MarketCapsRiskSteward: [`0xe88C01daAd0b931af68C9fD70bfa9bde8142FF64`](https://sepolia.explorer.zksync.io/address/0xe88C01daAd0b931af68C9fD70bfa9bde8142FF64)
 
-## Optimism Mainnet
+## Optimism 主网
 
 * Access Control Manager: [`0xD71b1F33f6B0259683f11174EE4Ddc2bb9cE4eD6`](https://optimistic.etherscan.io/address/0xD71b1F33f6B0259683f11174EE4Ddc2bb9cE4eD6)
 * Guardian: [`0x2e94dd14E81999CdBF5deDE31938beD7308354b3`](https://optimistic.etherscan.io/address/0x2e94dd14E81999CdBF5deDE31938beD7308354b3)
@@ -135,7 +135,7 @@
 * Omnichain Governance Executor: [`0xC7D6D33adcdBfccD416C3aAB1878360ea8b79ac6`](https://sepolia-optimism.etherscan.io/address/0xC7D6D33adcdBfccD416C3aAB1878360ea8b79ac6)
 * Omnichain Executor Owner Proxy: [`0xE92E31df479BC1031B866063F65CF71B6bAC4FC6`](https://sepolia-optimism.etherscan.io/address/0xE92E31df479BC1031B866063F65CF71B6bAC4FC6)
 
-## Base Mainnet
+## Base 主网
 
 * Access Control Manager: [`0x9E6CeEfDC6183e4D0DF8092A9B90cDF659687daB`](https://basescan.org/address/0x9E6CeEfDC6183e4D0DF8092A9B90cDF659687daB)
 * Guardian: [`0x1803Cf1D3495b43cC628aa1d8638A981F8CD341C`](https://basescan.org/address/0x1803Cf1D3495b43cC628aa1d8638A981F8CD341C)
@@ -157,7 +157,7 @@
 * RiskStewardReceiver: [`0xf69fd7757c8A59DFA5c35622d9D44B31dB21B0a2`](https://sepolia.basescan.org/address/0xf69fd7757c8A59DFA5c35622d9D44B31dB21B0a2)
 * MarketCapsRiskSteward: [`0xE03E243AC1f3239ed6a0793C25E79C951339a915`](https://sepolia.basescan.org/address/0xE03E243AC1f3239ed6a0793C25E79C951339a915)
 
-## Unichain Mainnet
+## Unichain 主网
 
 * Access Control Manager: [`0x1f12014c497a9d905155eB9BfDD9FaC6885e61d0`](https://uniscan.xyz/address/0x1f12014c497a9d905155eB9BfDD9FaC6885e61d0)
 * Guardian: [`0x1803Cf1D3495b43cC628aa1d8638A981F8CD341C`](https://uniscan.xyz/address/0x1803Cf1D3495b43cC628aa1d8638A981F8CD341C)

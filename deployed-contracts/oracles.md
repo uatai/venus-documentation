@@ -1,6 +1,6 @@
-# Oracles - Deployed Contracts
+# 预言机 - 已部署合约
 
-## BNB Chain Mainnet
+## 币安链主网
 
 * Binance Oracle: [`0x594810b741d136f1960141C0d8Fb4a91bE78A820`](https://bscscan.com/address/0x594810b741d136f1960141C0d8Fb4a91bE78A820)
 * Bound Validator:[`0x6E332fF0bB52475304494E4AE5063c1051c7d735`](https://bscscan.com/address/0x6E332fF0bB52475304494E4AE5063c1051c7d735)
@@ -28,7 +28,7 @@
 * PendleOracle PT-USDe-30OCT2025 Oracle: [`0xAa5138e86c078fd2859a929173B3870b5003EC30`](https://bscscan.com/address/0xAa5138e86c078fd2859a929173B3870b5003EC30)
 * USDT Chainlink Oracle: [`0x22Dc2BAEa32E95AB07C2F5B8F63336CbF61aB6b8`](https://bscscan.com/address/0x22Dc2BAEa32E95AB07C2F5B8F63336CbF61aB6b8)
 
-## BNB Chain Testnet
+## 币安链测试网
 
 * Binance Oracle:[`0xB58BFDCE610042311Dc0e034a80Cc7776c1D68f5`](https://testnet.bscscan.com/address/0xB58BFDCE610042311Dc0e034a80Cc7776c1D68f5)
 * Bound Validator:[`0x2842140e4Ad3a92e9af30e27e290300dd785076d`](https://testnet.bscscan.com/address/0x2842140e4Ad3a92e9af30e27e290300dd785076d)
@@ -55,7 +55,7 @@
 * PendleOracle PT-USDe-30OCT2025 Oracle: [`0x9d223177a0Ea5505EbF3665f950093091f04739b`](https://testnet.bscscan.com/address/0x9d223177a0Ea5505EbF3665f950093091f04739b)
 * USDT Chainlink Oracle: [`0x188b608544Fa32D313DE3BBB0480a238c0906e2a`](https://testnet.bscscan.com/address/0x188b608544Fa32D313DE3BBB0480a238c0906e2a)
 
-## Ethereum mainnet
+## 以太坊主网
 
 * Bound Validator:[`0x1Cd5f336A1d28Dff445619CC63d3A0329B4d8a58`](https://etherscan.io/address/0x1Cd5f336A1d28Dff445619CC63d3A0329B4d8a58)
 * Chainlink Oracle:[`0x94c3A2d6B7B2c051aDa041282aec5B0752F8A1F2`](https://etherscan.io/address/0x94c3A2d6B7B2c051aDa041282aec5B0752F8A1F2)
@@ -86,7 +86,7 @@
 * yvWETH-1 ERC4626 Oracle:[`0x38b3643c1b5160591073cc4121Bd91A456F14Acd`](https://etherscan.io/address/0x38b3643c1b5160591073cc4121Bd91A456F14Acd)
 * eBTC Oracle:[`0x04d6096A6F089047C7af6E4644D18fB766B8d4cE`](https://etherscan.io/address/0x04d6096A6F089047C7af6E4644D18fB766B8d4cE)
 
-## Sepolia (Ethereum testnet)
+## Sepolia（以太坊测试网）
 
 * Bound Validator:[`0x60c4Aa92eEb6884a76b309Dd8B3731ad514d6f9B`](https://sepolia.etherscan.io/address/0x60c4Aa92eEb6884a76b309Dd8B3731ad514d6f9B)
 * Chainlink Oracle:[`0x102F0b714E5d321187A4b6E5993358448f7261cE`](https://sepolia.etherscan.io/address/0x102F0b714E5d321187A4b6E5993358448f7261cE)
@@ -115,14 +115,14 @@
 * yvWETH-1 ERC4626 Oracle:[`0x5fA77768b9b5927A1Ed4bc2C562AE375Cd1887A2`](https://sepolia.etherscan.io/address/0x5fA77768b9b5927A1Ed4bc2C562AE375Cd1887A2)
 * eBTC Oracle:[`0x51Fa73926Cd9456A94221b70428aa94F009a5b81`](https://sepolia.etherscan.io/address/0x51Fa73926Cd9456A94221b70428aa94F009a5b81)
 
-## opBNB mainnet
+## opBNB 主网
 
 * Bound Validator:[`0xd1f80C371C6E2Fa395A5574DB3E3b4dAf43dadCE`](https://opbnbscan.com/address/0xd1f80C371C6E2Fa395A5574DB3E3b4dAf43dadCE)
 * Binance Oracle:[`0xB09EC9B628d04E1287216Aa3e2432291f50F9588`](https://opbnbscan.com/address/0xB09EC9B628d04E1287216Aa3e2432291f50F9588)
 * Resilient Oracle:[`0x8f3618c4F0183e14A218782c116fb2438571dAC9`](https://opbnbscan.com/address/0x8f3618c4F0183e14A218782c116fb2438571dAC9)
 * DefaultProxyAdmin:[`0xF77bD1D893F67b3EB2Cd256239c98Ba3F238fb52`](https://opbnbscan.com/address/0xF77bD1D893F67b3EB2Cd256239c98Ba3F238fb52)
 
-## opBNB testnet
+## opBNB 测试网
 
 * Bound Validator:[`0x049537Bb065e6253e9D8D08B45Bf6b753657A746`](https://testnet.opbnbscan.com/address/0x049537Bb065e6253e9D8D08B45Bf6b753657A746)
 * Binance Oracle:[`0x496B6b03469472572C47bdB407d5549b244a74F2`](https://testnet.opbnbscan.com/address/0x496B6b03469472572C47bdB407d5549b244a74F2)
@@ -149,7 +149,7 @@
 * OneJump Oracle weETH/eETH/USD (having intermediate oracle Chainlink): [`0x0E2a7C58e06d4924EF74fb14222aa087ECfc14D5`](https://sepolia.arbiscan.io/address/0x0E2a7C58e06d4924EF74fb14222aa087ECfc14D5)
 * OneJump Oracle wstETH/stETH/USD (having intermediate oracle Chainlink): [`0xFfc4869368a3954A1b933AC94471f12B7e83C24a`](https://sepolia.arbiscan.io/address/0xFfc4869368a3954A1b933AC94471f12B7e83C24a)
 
-## ZKsync Mainnet
+## ZKsync 主网
 
 * Bound Validator:[`0x51519cdCDDD05E2ADCFA108f4a960755D9d6ea8b`](https://explorer.zksync.io/address/0x51519cdCDDD05E2ADCFA108f4a960755D9d6ea8b)
 * Chainlink Oracle:[`0x4FC29E1d3fFFbDfbf822F09d20A5BE97e59F66E5`](https://explorer.zksync.io/address/0x4FC29E1d3fFFbDfbf822F09d20A5BE97e59F66E5)
@@ -171,7 +171,7 @@
 * wUSDM ERC4626 Oracle:[`0xBd09B8f1cD699F97d2c4387Fb6eA87853cF2A144`](https://sepolia.explorer.zksync.io/address/0xBd09B8f1cD699F97d2c4387Fb6eA87853cF2A144)
 * zkETH Oracle: [`0x4C7cA0B8A23d6ff73D7dd1f74096D25628f90348`](https://sepolia.explorer.zksync.io/address/0x4C7cA0B8A23d6ff73D7dd1f74096D25628f90348)
 
-## Optimism Mainnet
+## Optimism 主网
 
 * Bound Validator:[`0x37A04a1eF784448377a19F2b1b67cD40c09eA505`](https://optimistic.etherscan.io/address/0x37A04a1eF784448377a19F2b1b67cD40c09eA505)
 * SequencerChainlink Oracle:[`0x1076e5A60F1aC98e6f361813138275F1179BEb52`](https://optimistic.etherscan.io/address/0x1076e5A60F1aC98e6f361813138275F1179BEb52)
@@ -186,7 +186,7 @@
 * Resilient Oracle:[`0x6c01ECa2B5C97F135406a3A5531445A7d977D28e`](https://sepolia-optimism.etherscan.io/address/0x6c01ECa2B5C97F135406a3A5531445A7d977D28e)
 * DefaultProxyAdmin:[`0xa9aaf2A1cCf2C3a87997942abaA740887cC89241`](https://sepolia-optimism.etherscan.io/address/0xa9aaf2A1cCf2C3a87997942abaA740887cC89241)
 
-## Base Mainnet
+## Base 主网
 
 * Bound Validator:[`0x66dDE062D3DC1BB5223A0096EbB89395d1f11DB0`](https://basescan.org/address/0x66dDE062D3DC1BB5223A0096EbB89395d1f11DB0)
 * Chainlink Oracle:[`0x6F2eA73597955DB37d7C06e1319F0dC7C7455dEb`](https://basescan.org/address/0x6F2eA73597955DB37d7C06e1319F0dC7C7455dEb)
@@ -205,7 +205,7 @@
 * wsuperOETHb ERC4626 Oracle:[`0x6F6e9Fd240372435eb16dBE36362ECdF84AB0399`](https://sepolia.basescan.org/address/0x6F6e9Fd240372435eb16dBE36362ECdF84AB0399)
 * OneJump Oracle wstETH/ETH/USD (having intermediate oracle Chainlink): [`0xB242450Ab1CBdd93409ee22c333F6f70aaA6Be08`](https://sepolia.basescan.org/address/0xB242450Ab1CBdd93409ee22c333F6f70aaA6Be08)
 
-## Unichain Mainnet
+## Unichain 主网
 
 * Bound Validator:[`0xfdaA5dEEA7850997dA8A6E2F2Ab42E60F1011C19`](https://uniscan.xyz/address/0xfdaA5dEEA7850997dA8A6E2F2Ab42E60F1011C19)
 * DefaultProxyAdmin:[`0x78e9fff2ab8daAB8559070d897C399E5e1C5074c`](https://uniscan.xyz/address/0x78e9fff2ab8daAB8559070d897C399E5e1C5074c)

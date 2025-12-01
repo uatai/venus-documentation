@@ -1,14 +1,14 @@
-# XVS Omnichain - Deployed Contracts
+# XVS 全链 - 已部署合约
 
-## Mainnet chains
+## 主网链
 
-### BNB Chain
+### 币安链
 
 * XVSBridgeAdmin: [`0x70d644877b7b73800E9073BCFCE981eAaB6Dbc21`](https://bscscan.com/address/0x70d644877b7b73800E9073BCFCE981eAaB6Dbc21)
 * XVSProxyOFTSrc: [`0xf8F46791E3dB29a029Ec6c9d946226f3c613e854`](https://bscscan.com/address/0xf8F46791E3dB29a029Ec6c9d946226f3c613e854)
 * XVS: [`0xcF6BB5389c92Bdda8a3747Ddb454cB7a64626C63`](https://bscscan.com/address/0xcF6BB5389c92Bdda8a3747Ddb454cB7a64626C63)
 
-### Ethereum
+### 以太坊
 
 * XVSBridgeAdmin: [`0x9C6C95632A8FB3A74f2fB4B7FfC50B003c992b96`](https://etherscan.io/address/0x9C6C95632A8FB3A74f2fB4B7FfC50B003c992b96)
 * XVSProxyOFTDest: [`0x888E317606b4c590BBAD88653863e8B345702633`](https://etherscan.io/address/0x888E317606b4c590BBAD88653863e8B345702633)
@@ -26,33 +26,33 @@
 * XVSProxyOFTDest: [`0x20cEa49B5F7a6DBD78cAE772CA5973eF360AA1e6`](https://arbiscan.io/address/0x20cEa49B5F7a6DBD78cAE772CA5973eF360AA1e6)
 * XVS: [`0xc1Eb7689147C81aC840d4FF0D298489fc7986d52`](https://arbiscan.io/address/0xc1Eb7689147C81aC840d4FF0D298489fc7986d52)
 
-### ZKsync Mainnet
+### ZKsync 主网
 
 * XVSBridgeAdmin: [`0x2471043F05Cc41A6051dd6714DC967C7BfC8F902`](https://explorer.zksync.io/address/0x2471043F05Cc41A6051dd6714DC967C7BfC8F902)
 * XVSProxyOFTDest: [`0x16a62B534e09A7534CD5847CFE5Bf6a4b0c1B116`](https://explorer.zksync.io/address/0x16a62B534e09A7534CD5847CFE5Bf6a4b0c1B116)
 * XVS: [`0xD78ABD81a3D57712a3af080dc4185b698Fe9ac5A`](https://explorer.zksync.io/address/0xD78ABD81a3D57712a3af080dc4185b698Fe9ac5A)
 
-### Optimism Mainnet
+### Optimism 主网
 
 * XVSBridgeAdmin: [`0x3c307DF1Bf3198a2417d9CA86806B307D147Ddf7`](https://optimistic.etherscan.io/address/0x3c307DF1Bf3198a2417d9CA86806B307D147Ddf7)
 * XVSProxyOFTDest: [`0xbBe46bAec851355c3FC4856914c47eB6Cea0B8B4`](https://optimistic.etherscan.io/address/0xbBe46bAec851355c3FC4856914c47eB6Cea0B8B4)
 * XVS: [`0x4a971e87ad1F61f7f3081645f52a99277AE917cF`](https://optimistic.etherscan.io/address/0x4a971e87ad1F61f7f3081645f52a99277AE917cF)
 
-### Base Mainnet
+### Base 主网
 
 * XVSBridgeAdmin: [`0x6303FEcee7161bF959d65df4Afb9e1ba5701f78e`](https://basescan.org/address/0x6303FEcee7161bF959d65df4Afb9e1ba5701f78e)
 * XVSProxyOFTDest: [`0x3dD92fB51a5d381Ae78E023dfB5DD1D45D2426Cd`](https://basescan.org/address/0x3dD92fB51a5d381Ae78E023dfB5DD1D45D2426Cd)
 * XVS: [`0xebB7873213c8d1d9913D8eA39Aa12d74cB107995`](https://basescan.org/address/0xebB7873213c8d1d9913D8eA39Aa12d74cB107995)
 
-### Unichain Mainnet
+### Unichain 主网
 
 * XVSBridgeAdmin: [`0x2EAaa880f97C9B63d37b39b0b316022d93d43604`](https://uniscan.xyz/address/0x2EAaa880f97C9B63d37b39b0b316022d93d43604)
 * XVSProxyOFTDest: [`0x9c95f8aa28fFEB7ECdC0c407B9F632419c5daAF8`](https://uniscan.xyz/address/0x9c95f8aa28fFEB7ECdC0c407B9F632419c5daAF8)
 * XVS: [`0x81908BBaad3f6fC74093540Ab2E9B749BB62aA0d`](https://uniscan.xyz/address/0x81908BBaad3f6fC74093540Ab2E9B749BB62aA0d)
 
-## Testnet chains
+## 测试链
 
-### BNB Chain
+### 币安链
 
 * XVSBridgeAdmin: [`0xB164Cb262328Ca44a806bA9e3d4094931E658513`](https://testnet.bscscan.com/address/0xB164Cb262328Ca44a806bA9e3d4094931E658513)
 * XVSProxyOFTSrc: [`0x0E132cd94fd70298b747d2b4D977db8d086e5fD0`](https://testnet.bscscan.com/address/0x0E132cd94fd70298b747d2b4D977db8d086e5fD0)
