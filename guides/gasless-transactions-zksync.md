@@ -1,33 +1,37 @@
-This guide will walk you through the steps to interact with Venus Protocol on ZKsync without needing ETH to cover gas fees, thanks to the integration of [Zyfi Paymaster](https://www.zyfi.org/). All transactions will be sponsored, so you can focus on using the protocol without worrying about gas expenses.
+本指南将引导你完成在 ZKsync 上使用 金星 协议的步骤，无需使用 ETH 支付 Gas 费用，这得益于 [Zyfi Paymaster](https://www.zyfi.org/) 的集成。所有交易都将由 Zyfi Paymaster 赞助，因此你可以专注于使用该协议，而无需担心 Gas 费用。
 
-## Step-by-Step Guide
+## 分步指南
 
-### Step 1: Connect to ZKsync on Venus
+### 步骤 1：在 金星 上连接到 ZKsync
 
-1. Open the [Venus app](https://app.venus.io) and connect your wallet.
-2. Make sure you are connected to the ZKsync network. If you are not, switch your wallet’s network to ZKsync.
+1. 打开 [金星应用app](https://app.venus.io) 并连接你的钱包。
 
-<figure><img src="../.gitbook/assets/gasless-zksync-network-selection.png" alt="Selection of ZKsync network"><figcaption>Selection of ZKsync network</figcaption></figure>
+2. 确保你已连接到 ZKsync 网络。如果未连接，请将钱包的网络切换到 ZKsync。
 
-### Step 2: Interact with the Venus Protocol
+<figure><img src="../.gitbook/assets/gasless-zksync-network-selection.png" alt="选择 ZKsync 网络"><figcaption>选择 ZKsync 网络</figcaption></figure>
 
-In this example, we will approve the use of the ZK market as collateral.
+### 步骤 2：与 金星 协议交互
 
-1. Navigate to the ZK market on Venus.
-2. Click on "Collateral" to enable the use of this market as collateral.
+在本示例中，我们将批准使用 ZK 市场作为抵押品。
 
-<figure><img src="../.gitbook/assets/gasless-zksync-features.png" alt="Interaction with any feature on ZKsync"><figcaption>Interaction with any feature on ZKsync</figcaption></figure>
+1. 导航至 金星 上的 ZK 市场。
 
-### Step 3: Sign the Transaction
+2. 点击“抵押品”以启用将此市场用作抵押品。
 
-1. Instead of sending a typical transaction, you will be prompted to **sign a message**. This step authorizes Zyfi to pay for the gas fee of the transaction on your behalf.
-2. Sign the message in your wallet. The gas for the transaction will be covered by Zyfi Paymaster, so you **don’t need ETH** in your wallet.
-3. Once signed, Zyfi processes the transaction, and it is sent to the ZKsync blockchain with gas paid through their vault.
+<figure><img src="../.gitbook/assets/gasless-zksync-features.png" alt="与 ZKsync 上的任何功能交互"><figcaption>与 ZKsync 上的任何功能交互</figcaption></figure>
 
-<figure><img src="../.gitbook/assets/gasless-zksync-rabby.png" alt="Sign a message with Rabby, instead of sending a transaction"><figcaption>Sign a message with Rabby, instead of sending a transaction</figcaption></figure>
+### 步骤 3：签署交易
 
-<figure><img src="../.gitbook/assets/gasless-zksync-metamask.png" alt="Sign a message with Metamask, instead of sending a transaction"><figcaption>Sign a message with Metamask, instead of sending a transaction</figcaption></figure>
+1. 系统将提示你**签署消息**，而不是发送典型的交易。此步骤授权 Zyfi 代表你支付交易的 gas 费用。
 
-### Viewing the Transaction
+2. 在你的钱包中签署消息。交易的 gas 费用将由 Zyfi Paymaster 支付，因此你的钱包**无需持有 ETH**。
 
-You can verify the transaction on the [ZKsync Explorer](https://explorer.zksync.io/). The transaction will display Zyfi as the Paymaster, covering the gas fees.
+3. 签署完成后，Zyfi 将处理交易，并通过其金库支付 gas 费用，并将交易发送到 ZKsync 区块链。
+
+<figure><img src="../.gitbook/assets/gasless-zksync-rabby.png" alt="使用 Rabby 签署消息，而不是发送交易"><figcaption>使用 Rabby 签署消息，而不是发送交易</figcaption></figure>
+
+<figure><img src="../.gitbook/assets/gasless-zksync-metamask.png" alt="使用 Metamask 签署消息，而不是发送交易"><figcaption>使用 Metamask 签署消息，而不是发送交易</figcaption></figure>
+
+### 查看交易
+
+你可以在 [ZKsync Explorer](https://explorer.zksync.io/) 上验证交易。交易将显示 Zyfi 作为支付方，用于支付 gas 费用。

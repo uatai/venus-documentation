@@ -1,22 +1,33 @@
-# Vaults
+# 金库
 
-Vaults within Venus Protocol provide a secure and efficient mechanism for users to stake their tokens, whether XVS or VAI, and earn passive income. This staking process allows users to actively participate in and contribute to the stability and security of the Venus ecosystem, while maximizing returns on their holdings.&#x20;
+金星 协议中的金库为用户提供了一种安全高效的机制，用于质押他们的代币（无论是 XVS 还是 VAI），并赚取被动收入。通过质押，用户可以积极参与并贡献于 金星 生态系统的稳定性和安全性，同时最大化其持有的代币收益。
 
-**Staking in XVS Vault**
+**在 XVS 金库中进行质押**
 
-1. Navigate to the Venus app (app.venus.io) and connect your BNB Chain Wallet or other supported wallet apps.
-2. On the left side of the screen, click on the 'Vault' tab.
-3. A new screen will display two options: XVS and VAI vaults. Select the 'XVS' vault.
-4. Once you select the XVS vault, a new interface will show. Click the 'Stake' button.
-5. A pop-up will appear asking for the amount of XVS you want to stake. Input the desired amount and confirm.
-6. After entering the amount, a prompt will ask for the transaction's confirmation in your wallet. Confirm this.
-7. Once you've staked your XVS tokens, the interface will show the staked amount, your potential rewards, and other vault statistics.
+1. 打开 金星 应用 (app.venus.top) 并连接你的 币安链 钱包或其他支持的钱包应用。
 
-**Staking in VAI Vault**
+2. 在屏幕左侧，点击“金库”选项卡。
 
-1. Follow the same steps as above to access the 'Vault' tab in the Venus app.
-2. This time, select the 'VAI' vault.
-3. Upon clicking on the 'VAI' vault, you'll see the option to 'Stake'.
-4. Enter the amount of VAI you'd like to stake and confirm the staking action.
-5. Just like with the XVS vault, you'll need to confirm the transaction in your wallet.
-6. After staking, the interface will show the staked amount, potential rewards, and other relevant statistics related to the VAI vault.
+3. 新屏幕将显示两个选项：XVS 金库和 VAI 金库。选择“XVS”金库。
+
+4. 选择 XVS 金库后，将显示一个新界面。点击“质押”按钮。
+
+5. 将弹出一个窗口，询问你要质押的 XVS 数量。输入所需数量并确认。
+
+6. 输入金额后，系统会提示你确认钱包中的交易。请确认。
+
+7. 质押 XVS 代币后，界面将显示质押金额、潜在奖励和其他金库统计数据。
+
+**在 VAI 金库中质押**
+
+1. 按照上述步骤访问 金星 应用中的“金库”选项卡。
+
+2. 这次，选择“VAI”金库。
+
+3. 点击“VAI”金库后，你会看到“质押”选项。
+
+4. 输入你想要质押的 VAI 数量并确认质押操作。
+
+5. 与 XVS 金库一样，你需要在钱包中确认交易。
+
+6. 质押完成后，界面将显示质押金额、潜在奖励和其他与 VAI 金库相关的统计数据。

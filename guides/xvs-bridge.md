@@ -1,53 +1,55 @@
 # XVS Bridge
 
-### Introduction
+### 简介
 
-This guide provides step-by-step instructions on how to bridge XVS tokens from the BNB Chain to the Ethereum network.
+本指南提供将 XVS 代币从 BNB 链桥接到以太坊网络的详细步骤。
 
-### Steps for Bridging XVS from BNB Chain to Ethereum
+### 将 XVS 从 BNB 链桥接到以太坊的步骤
 
-#### Step 1: Access the Venus Bridge
+#### 步骤 1：访问 Venus Bridge
 
-* Navigate to the Venus Protocol and select the "Bridge" option from the sidebar menu. [XVS Bridge](https://app.venus.io/#/bridge)
+* 访问 金星 协议，并从侧边栏菜单中选择“桥接”选项。[XVS Bridge](https://app.venus.io/#/bridge)
 
-#### Step 2: Connect Your Wallet
+#### 步骤 2：连接你的钱包
 
-* Click on the "Connect wallet" button in the top right corner of the Venus Bridge interface to connect your wallet.
+* 点击 金星 桥 界面右上角的“连接钱包”按钮连接你的钱包。
 
 <figure><img src="../.gitbook/assets/Screenshot 2024-01-22 at 1.15.11 PM.png" alt=""><figcaption></figcaption></figure>
 
-#### Step 3: Configure the Bridge Transaction
+#### 步骤 3：配置桥接交易
 
-* **From**: Ensure "BNB mainnet" is selected in the "From" dropdown menu.
-* **To**: Select "Ethereum" in the "To" dropdown menu to set the destination network.
+* **源网络**：确保在“源网络”下拉菜单中选择“BNB 主网”。
+
+* **目标网络**：在“目标网络”下拉菜单中选择“以太坊”以设置目标网络。
 
 <figure><img src="../.gitbook/assets/Screenshot 2024-01-22 at 1.25.29 PM.png" alt=""><figcaption></figcaption></figure>
 
-#### Step 4: Enter the Amount to Bridge
+#### 步骤 4：输入桥接金额
 
-* Enter the amount of XVS you wish to transfer in the "Amount" field. You can also use the "MAX" button to transfer the total available balance.
-* Check your "Wallet balance" to confirm you have sufficient XVS and BNB for gas fees.
+* 在“金额”字段中输入你要转账的 XVS 金额。你也可以使用“最大”按钮转账全部可用余额。 * 检查你的“钱包余额”，确认你有足够的 XVS 和 BNB 来支付 gas 费用。
 
-#### Step 5: Approve XVS Token
+#### 步骤 5：批准 XVS 代币
 
-* Before initiating the transfer, you must give the bridge contract permission to access your XVS tokens. Click on the "Approve XVS" button to do this.
-* A wallet pop-up will request your confirmation for the approval. Confirm to proceed.
+* 在发起转账之前，你必须授予桥接合约访问你的 XVS 代币的权限。点击“批准 XVS”按钮即可。
+
+* 钱包会弹出窗口请求你确认批准。确认后继续。
 
 <figure><img src="../.gitbook/assets/Screenshot 2024-01-22 at 1.31.35 PM.png" alt=""><figcaption></figcaption></figure>
 
-#### Step 6: Initiate the Transfer
+#### 步骤 6：发起转账
 
-* After approving XVS token usage, the interface will update to reflect the next step. Click the "Transfer" button (which replaces the "Approve XVS" button after approval) to initiate the bridging process.
-* A confirmation pop-up will appear in your wallet for you to approve the transaction.
+* 批准使用 XVS 代币后，界面将更新以显示下一步。点击“转账”按钮（批准后会替换“批准 XVS”按钮）以发起桥接过程。
 
-#### Step 7: Confirm and Wait
+* 你的钱包中将弹出确认窗口，请你确认交易。
 
-* Confirm the transaction in your wallet. The Venus Bridge interface will show the transaction as pending, indicating that it is being processed. This may take a few minutes.
+#### 第 7 步：确认并等待
 
-#### Step 8: Transaction Completion
+* 在你的钱包中确认交易。金星 桥 界面将显示交易状态为“待处理”，表示交易正在处理中。这可能需要几分钟时间。
 
-* Once the transaction is complete, the XVS tokens will be available in your Ethereum wallet.
+#### 第 8 步：交易完成
 
-### Conclusion
+* 交易完成后，XVS 代币将出现在你的以太坊钱包中。
 
-Bridging XVS tokens from BNB Chain to Ethereum is made simple with the Venus Protocol. Remember to approve your tokens for use by the bridge and to check transaction details carefully before confirming to ensure a smooth bridging experience.
+### 总结
+
+使用 金星 协议，可以轻松地将 XVS 代币从 BNB 链桥接到以太坊。请记住，在确认交易前，务必授权桥接器使用你的代币，并仔细检查交易详情，以确保桥接过程顺利进行。

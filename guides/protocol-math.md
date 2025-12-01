@@ -1,30 +1,34 @@
-# Protocol Math
+# 协议数学
 
-### Overview
+### 概述
 
-The contracts under the Venus Protocol employ a system called Exponential.sol. This system uses exponential mathematics to represent fractional quantities with high precision.
+金星 协议下的合约采用名为 Exponential.sol 的系统。该系统利用指数数学以高精度表示分数。
 
-Most numbers in this system are represented by a mantissa, an unsigned integer scaled by a factor of 1 \* 10^18. This scaling ensures basic mathematical operations can be performed with a high degree of accuracy.
+该系统中的大多数数字都以尾数表示，尾数是一个无符号整数，其缩放因子为 1 * 10^18。这种缩放确保了基本数学运算能够以极高的精度进行。
 
-### vToken and Underlying Decimals
+### vToken 和底层小数
 
-Prices and exchange rates are adjusted according to the unique decimal scaling of each asset. vTokens, which are BEP-20 tokens, are scaled with 8 decimal places. However, their underlying tokens may have different decimal scaling, which is indicated by a public member called 'decimals'.
+价格和汇率根据每种资产独特的小数缩放进行调整。vToken 是 BEP-20 代币，其小数位数为 8 位。但是，其底层代币可能具有不同的小数缩放，这由名为“decimals”的公共成员指示。
 
-For further details, please refer to the respective token contract addresses.
+更多详情，请参阅相应的代币合约地址。
 
 {% content-ref url="../deployed-contracts/markets.md" %}
+
 [core-pool.md](../deployed-contracts/markets.md)
+
 {% endcontent-ref %}
 
-### Interpreting Exchange Rates
+### 汇率解读
 
-The exchange rate of vTokens is adjusted based on the decimal difference between the vToken and its underlying asset.
+vToken 的汇率​​根据 vToken 与其基础资产之间的小数位数差进行调整。
 
 $$
+
 oneVTokenInUnderlying = \frac{exchangeRateCurrent}{1 \times 10^{(18 + underlyingDecimals - vTokenDecimals)}}
+
 $$
 
-Here is an example illustrating how to determine the value of one vBUSD in BUSD using the Web3.js JavaScript library.
+以下示例演示如何使用 Web3.js JavaScript 库确定一个 vBUSD 的 BUSD 价值。
 
 ```javascript
 const vTokenDecimals = 8; // all vTokens have 8 decimal places
@@ -37,39 +41,47 @@ const oneVTokenInUnderlying = exchangeRateCurrent / Math.pow(10, mantissa);
 console.log('1 vBUSD can be redeemed for', oneVTokenInUnderlying, 'BUSD');
 ```
 
-As BNB lacks an underlying contract, you must set the 'underlyingDecimals' to 18 when dealing with vBNB.
+由于 BNB 没有底层合约，因此在使用 vBNB 时，您必须将“underlyingDecimals”设置为 18。
 
-To calculate the number of underlying tokens that can be redeemed using vTokens, you should multiply the total amount of vTokens by the previously computed 'oneVTokenInUnderlying' value.
+要计算可以使用 vToken 赎回的底层代币数量，您应该将 vToken 的总数乘以之前计算的“oneVTokenInUnderlying”值。
 
 $$
+
 underlyingTokens = vTokenAmount \times oneVTokenInUnderlying
+
 $$
 
-### Calculating Accrued Interest
+### 计算应计利息
 
-Interest rates for each market are updated in any block where there is a change in the ratio of borrowed assets to supplied assets. The magnitude of this change in interest rates depends on the interest rate model smart contract in place for the market, and the degree of change in the aforementioned ratio.
+当借入资产与供应资产的比率发生变化时，每个市场的利率都会在相应的区块中更新。利率变化的幅度取决于该市场使用的利率模型智能合约以及上述比率的变化程度。
 
-For a visualization of the current interest rate model applied to each market, refer to the market pages at the [Venus app](https://app.venus.io).
+要查看应用于每个市场的当前利率模型的可视化信息，请参阅 [Venus app](https://app.venus.io) 中的市场页面。
 
-The accrual of interest to suppliers and borrowers in a market occurs when any wallet interacts with the market's vToken contract. This interaction could be any of the following functions: mint, redeem, borrow, or repay. A successful execution of any of these functions triggers the `accrueInterest` method, leading to the addition of interest to the underlying balance of every supplier and borrower in the market. Interest accrues for the current block, as well as any previous blocks where the `accrueInterest` method was not triggered due to lack of interaction with the vToken contract. Interest only accumulates during blocks where one of the aforementioned methods is invoked on the vToken contract.
+当任何钱包与市场的 vToken 合约交互时，市场中供应商和借款人的利息就会累积。这种交互可以是以下任何功能：铸币、赎回、借款或还款。成功执行这些功能中的任何一个都会触发 `accrueInterest` 方法，从而将利息添加到市场中每个供应商和借款人的基础余额中。利息不仅在当前区块累积，而且在之前由于未与 vToken 合约交互而未触发 `accrueInterest` 方法的任何区块中也会累积。利息仅在 vToken 合约上调用了上述方法之一的区块中累积。
 
-Let's consider an example of supply interest accrual: Alice supplies 1 BNB to the Venus Protocol. At the time of her supply, the `supplyRatePerBlock` is 37893605 Wei, which equates to 0.000000000037893605 BNB per block. For 3 blocks, no interactions occur with the vBNB contract. On the subsequent 4th block, Bob borrows some BNB. As a result, Alice’s underlying balance is updated to 1.000000000151574420 BNB (calculated by multiplying 37893605 Wei by 4 blocks and adding the original 1 BNB). From this point onwards, the accrued interest on Alice’s underlying BNB balance will be based on the updated value of 1.000000000151574420 BNB, rather than the initial 1 BNB. It is important to note that the `supplyRatePerBlock` value may alter at any given time.
+让我们来看一个供应利息累积的例子：Alice 向 Venus 协议供应 1 个 BNB。在她供应时，`supplyRatePerBlock` 为 37893605 Wei，相当于每个区块 0.000000000037893605 BNB。在接下来的 3 个区块中，vBNB 合约未发生任何交互。在第 4 个区块，Bob 借入了一些 BNB。因此，Alice 的基础余额更新为 1.000000000151574420 BNB（通过将 37893605 Wei 乘以 4 个区块，再加上最初的 1 BNB 计算得出）。从此时起，Alice 的基础 BNB 余额的累计利息将基于更新后的 1.000000000151574420 BNB 值，而不是最初的 1 BNB。需要注意的是，`supplyRatePerBlock` 的值可能会随时改变。
 
-### Calculating the APY Using Rate Per Block
+### 使用每区块利率计算年收益率 (APY)
 
-The Annual Percentage Yield (APY) for either supplying or borrowing in each market can be computed using the `supplyRatePerBlock` (for Supply APY) or `borrowRatePerBlock` (for Borrow APY) values. These rates can be used in the following formula (assuming a daily compound):
+在每个市场中，无论是供应还是借款，都可以使用 `supplyRatePerBlock`（用于计算供应年收益率）或 `borrowRatePerBlock`（用于计算借款年收益率）值来计算年收益率 (APY)。这些利率可用于以下公式（假设按日复利计算）：
 
 ```javascript
-Rate = vToken.supplyRatePerBlock(); // Integer
-Rate = 37893566
-BNB Mantissa = 1 * 10 ^ 18 (BNB has 18 decimal places)
-Blocks Per Day = 80 * 60 * 24 (based on 80 blocks occurring every minute on BNB Chain)
-Days Per Year = 365
 
-APY = (((Rate / BNB Mantissa) * Blocks Per Day) + 1) ^ (Days Per Year - 1) * 100
+Rate = vToken.supplyRatePerBlock(); // 整数
+
+利率 = 37893566
+
+BNB 尾数 = 1 * 10 ^ 18（BNB 有 18 位小数）
+
+每日区块数 = 80 * 60 * 24（基于 BNB 链每分钟产生 80 个区块）
+
+每年天数 = 365
+
+年化收益率 (APY) = (((利率 / BNB 尾数) * 每日区块数) + 1) ^ (每年天数 - 1) * 100
+
 ```
 
-Here is an example of calculating the supply and borrow APY with Web3.js JavaScript:
+以下是使用 Web3.js JavaScript 计算供应量和借贷年化收益率的示例：
 
 ```javascript
 const ethMantissa = 1e18;

@@ -1,49 +1,49 @@
-# Borrowing VAI
+# 借入 VAI
 
-### Introduction
+### 简介
 
-This guide provides step-by-step instructions on how to borrow VAI, the stablecoin of Venus Protocol, **available exclusively for prime users.** Borrowing involves using your account's **total core pool** **collateral** to secure the loan, and this tutorial will walk you through the VAI UI to accomplish this.
+本指南将逐步指导你如何借入 VAI，VAI 是 金星协议 的稳定币，**仅限高级用户使用**。借款需要使用你账户的**核心资金池总额**作为抵押品，本教程将引导你完成 VAI 用户界面的操作。
 
-### Steps for Borrowing VAI
+### 借入 VAI 的步骤
 
-#### Step 1: Access VAI Borrowing UI
+#### 步骤 1：访问 VAI 借款用户界面
 
-Navigate to the Venus Protocol website and select the "VAI" option from the sidebar menu. This will take you to the VAI dashboard, where you can manage your borrowings and repayments.
+访问 金星协议 网站，从侧边栏菜单中选择“VAI”选项。这将带你进入 VAI 控制面板，你可以在这里管理你的借款和还款。
 
-#### Step 2: Connect Your Wallet
+#### 步骤 2：连接你的钱包
 
-Click on the "Connect wallet" button in the top right corner of the VAI dashboard to connect your wallet. This is necessary to interact with the Venus Protocol and manage your VAI borrowings.
+点击 VAI 控制面板右上角的“连接钱包”按钮，连接你的钱包。这是与 金星协议 交互并管理你的 VAI 借款所必需的步骤。
 
 <figure><img src="../.gitbook/assets/Screenshot 2024-03-08 at 2.51.30 PM.png" alt=""><figcaption></figcaption></figure>
 
-#### Step 3: Enter Borrow Amount
+#### 步骤 3：输入借款金额
 
-In the "Borrow" tab, enter the amount of VAI you wish to borrow in the provided field. You can also see your maximum borrow limit based on your account's total collateral. Ensure that the amount you wish to borrow does not exceed this limit.
+在“借款”选项卡中，在提供的字段中输入你希望借入的 VAI 金额。你还可以根据账户的总抵押品查看你的最高借款限额。请确保你希望借入的金额不超过此限额。
 
 <figure><img src="../.gitbook/assets/Screenshot 2024-03-12 at 8.51.21 AM.png" alt=""><figcaption></figcaption></figure>
 
-#### Step 4: Review and Confirm Borrowing
+#### 步骤 4：审核并确认借款
 
-After entering the desired amount, review the details of your borrowing transaction, including the collateral used and the borrow limit. Once you've confirmed that everything is correct, click on the "Borrow" button to initiate the transaction.
+输入所需金额后，请审核你的借款交易详情，包括使用的抵押品和借款限额。确认所有信息无误后，点击“借款”按钮发起交易。
 
-A wallet pop-up will appear, asking for your confirmation to proceed with the transaction. Confirm to finalize the borrowing process.
+钱包会弹出窗口，要求你确认是否继续交易。确认后即可完成借款流程。
 
-### Repaying VAI Debt
+### 偿还 VAI 债务
 
-#### Step 1: Navigate to Repay Tab
+#### 步骤 1：前往“偿还”选项卡
 
-To repay your VAI debt, access the VAI dashboard again and select the "Repay" tab. This interface allows you to make repayments towards your borrowed VAI.
+要偿还你的 VAI 债务，请再次访问 VAI 控制面板并选择“偿还”选项卡。你可以在此界面偿还已借入的 VAI。
 
 <figure><img src="../.gitbook/assets/Screenshot 2024-03-12 at 8.50.41 AM.png" alt=""><figcaption></figcaption></figure>
 
-#### Step 2: Enter Repayment Amount
+#### 步骤 2：输入偿还金额
 
-In the "Repay" tab, enter the amount of VAI you wish to repay. You can choose to repay part of your debt or the entire amount.
+在“偿还”选项卡中，输入你要偿还的 VAI 金额。你可以选择偿还部分债务或全部金额。
 
-#### Step 3: Review and Confirm Repayment
+#### 第三步：审核并确认还款
 
-Review your repayment details carefully. Once you are ready, click on the "Repay VAI" button to proceed. Confirm the transaction in your wallet pop-up to complete the repayment process.
+请仔细核对你的还款详情。准备就绪后，点击“偿还 VAI”按钮继续。在你的钱包弹出窗口中确认交易，即可完成还款流程。
 
-### Conclusion
+### 总结
 
-Borrowing and repaying VAI on Venus Protocol is straightforward with the VAI UI. By following these steps and ensuring you have enough collateral, you can manage your stablecoin needs effectively. Always be mindful of your borrow limits and repayment responsibilities to maintain a healthy financial position within the protocol.
+使用 VAI 用户界面，在 金星协议 上借入和偿还 VAI 非常简单。只需按照这些步骤操作，并确保你拥有足够的抵押品，即可有效管理你的稳定币需求。请始终注意你的借款限额和还款责任，以在协议中保持健康的财务状况。
