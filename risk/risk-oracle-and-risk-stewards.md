@@ -1,66 +1,76 @@
-# Risk Stewards & Risk Oracles
+# 风险管家与风险预言机
 
-## Overview
+## 概述
 
-Venus Protocol incorporates Risk Oracles and Risk Stewards to ensure risk parameters remain up-to-date, resilient, and aligned with real-time market conditions—all while preserving decentralized governance. Previously, Venus relied on manually created VIPs to apply risk updates based on Chaos Labs recommendations. With the introduction of the Risk Steward and its on-chain receiver, this process is now automated through a secure and permissioned mechanism. In the initial phase, only market cap-related parameters—specifically supply caps and borrow caps—will be updated automatically, improving responsiveness and operational efficiency.
-
----
-
-## Chaos Labs Risk Oracle
-
-The **Chaos Labs Risk Oracle** is a system designed to continuously analyze market conditions—such as price volatility, liquidity, asset utilization, and liquidation events—and generate risk parameter recommendations tailored to the Venus Protocol.
-
-### Key Benefits:
-
-- **Real-time updates** to key parameters like supply and borrow caps
-- **Automated adjustments** to ensure optimal lending and borrowing rates
-- **More responsive risk management** with lower latency
-- **Reduced operational overhead** for the Venus community
-
-The Risk Oracle makes Venus more adaptable while ensuring parameters remain within safe and governance-approved limits.
+金星 协议引入了风险预言机和风险管家，以确保风险参数保持最新、稳健，并与实时市场状况保持一致，同时维护去中心化治理。此前，Venus 依赖手动创建的 VIP 来应用基于 Chaos Labs 建议的风险更新。随着风险管家及其链上接收器的引入，这一过程现在通过安全且授权的机制实现自动化。在初始阶段，仅市值相关的参数（特别是供应上限和借贷上限）将自动更新，从而提高响应速度和运营效率。
 
 ---
 
-## Risk Steward
+## Chaos Labs 风险预言机
 
-A **Risk Steward** is an on-chain smart contract that executes risk parameter updates on behalf of the protocol, based on recommendations from the Risk Oracle. Venus has introduced this role to bridge off-chain risk intelligence with on-chain execution in a controlled, transparent way.
+**Chaos Labs 风险预言机** 是一个旨在持续分析市场状况（例如价格波动、流动性、资产利用率和清算事件）并生成针对 Venus 协议量身定制的风险参数建议的系统。
 
-### Role of the Risk Steward:
+### 主要优势：
 
-- Reads values from the Risk Oracle during execution
-- Updates only pre-approved risk parameters (e.g., supply caps, borrow caps)
-- Operates within limits set by Venus governance
-- Cannot modify critical protocol settings such as interest rate models, market listings, or governance controls
+- **实时更新**关键参数，例如供应上限和借贷上限
 
-This structure ensures **faster, automated adjustments** without compromising community control.
+- **自动调整**以确保最佳借贷利率
 
----
+- **响应更迅速的风险管理**，延迟更低
 
-## How It Works
+- **降低 金星 社区的运营成本**
 
-1. **Data Source**: Chaos Labs publishes updated recommendations via the Risk Oracle.
-2. **Keeper Role**: A Keeper bot observes changes and initiates transactions to update Venus Protocol’s parameters.
-3. **Validation**: During execution, Venus contracts read and apply new values **only if they are within predefined safety bounds**.
-4. **Challenge Window**:  Critical updates, which will be introduced in an upcoming phase, will go through governance and can be **challenged or vetoed** during a defined challenge window before they take effect.
-
-## Governance & Control
-
-Importantly, this system does **not bypass protocol governance**. All automated updates happen within constraints defined and approved by the Venus community.
-
-Any change made through the Risk Oracle follows an **optimistic governance model**:
-
-This process **preserves decentralization** while enabling faster, safer protocol maintenance.
+风险预言机使 金星协议 更具适应性，同时确保参数保持在安全且符合治理规定的范围内。
 
 ---
 
-## What’s Next
+## 风险管家
 
-Initially, the integration focuses on automating supply and borrow cap updates. Over time, additional parameters may be supported as part of a gradual rollout, always subject to DAO approval and governance-defined constraints.
+**风险管家**是一个链上智能合约，它根据风险预言机的建议，代表协议执行风险参数更新。金星协议 引入此角色，旨在以可控且透明的方式将链下风险情报与链上执行连接起来。
+
+### 风险管家的角色：
+
+- 在执行期间从风险预言机读取数值
+
+- 仅更新预先批准的风险参数（例如，供应上限、借贷上限）
+
+- 在 Venus 治理设定的限额内运作
+
+- 不能修改关键协议设置，例如利率模型、市场列表或治理控制
+
+这种结构确保了**更快、更自动化的调整**，同时又不损害社区的控制权。
 
 ---
 
-## Learn More
+## 工作原理
 
-- [Chaos Labs: Risk Oracles — Real-Time Risk Management for DeFi](https://chaoslabs.xyz/posts/risk-oracles-real-time-risk-management-for-defi)  
-- [Venus Community Proposal: Integrate Chaos Labs Risk Oracle](https://community.venus.io/t/integrate-chaos-labs-risk-oracle-to-venus-protocol/4569)
+1. **数据源**：Chaos Labs 通过风险预言机发布更新后的建议。
+
+2. **Keeper 角色**：Keeper 机器人观察变化并发起交易以更新 金星 协议的参数。
+
+3. **验证**：在执行期间，金星协议 合约读取并应用新值**仅在新值位于预定义的安全范围内**。
+
+4. **挑战窗口**：即将推出的关键更新将经过治理审核，并在生效前于规定的挑战窗口期内接受**挑战或否决**。
+
+## 治理与控制
+
+重要的是，该系统**不会绕过协议治理**。所有自动化更新均在金星社区定义和批准的约束条件下进行。
+
+通过风险预言机进行的任何更改均遵循**乐观治理模型**：
+
+此流程**在保持去中心化的同时，实现了更快、更安全的协议维护。
+
+---
+
+## 后续计划
+
+初期，集成重点在于自动化供应量和借贷上限的更新。随着时间的推移，可能会逐步支持其他参数，但始终需经DAO批准并遵守治理定义的约束。
+
+---
+
+## 了解更多
+
+- [Chaos Labs：风险预言机 — 面向 DeFi 的实时风险管理](https://chaoslabs.xyz/posts/risk-oracles-real-time-risk-management-for-defi)
+
+- [Venus 社区提案：集成 Chaos Labs 风险预言机](https://community.venus.io/t/integrate-chaos-labs-risk-oracle-to-venus-protocol/4569)
 

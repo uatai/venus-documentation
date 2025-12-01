@@ -1,75 +1,80 @@
-# Resilient Price Oracle
+# 弹性价格预言机
 
-### Overview
+### 概述
 
-In its previous version, Venus was fully reliant on the Chainlink price oracle for fetching prices. This dependence, while generally reliable, created a single point of failure. An erroneous or stale price could, without a secondary mechanism for validation, pose threats such as unwarranted liquidations or inflated borrowing.
+在之前的版本中，金星协议 完全依赖 Chainlink 价格预言机来获取价格。这种依赖虽然通常可靠，但也造成了单点故障。如果没有辅助验证机制，错误或过时的价格可能会带来诸如不必要的清算或过度借贷等风险。
 
-In light of these risks, Venus V4 introduces the Resilient Price Oracle, a more robust system capable of pulling data from multiple sources for cross-validation. The Resilient Oracle is equipped with an algorithm to verify prices between two or more sources, providing a safeguard in cases where the primary source proves unreliable or fails.
+鉴于这些风险，金星协议 V4 引入了弹性价格预言机，这是一个更强大的系统，能够从多个数据源提取数据进行交叉验证。弹性预言机配备了一种算法，用于验证两个或多个数据源之间的价格一致性，从而在主要数据源不可靠或失效的情况下提供保障。
 
-Furthermore, the improved oracle infrastructure supports the integration of new price oracles in real-time and permits the enabling and disabling of price oracles per token.
+此外，改进后的预言机基础设施支持实时集成新的价格预言机，并允许为每个代币启用和禁用价格预言机。
 
-### Key Features
+### 主要特性
 
-#### Resilient Price Feeds
+#### 弹性价格源
 
-The Resilient Price Feeds replace the single source price provider used in the Comptroller contract with a more robust and reliable solution. This new component not only fetches asset prices from various on-chain sources but also includes a fallback mechanism to protect the protocol from oracle failures. Presently, this feature incorporates Chainlink, RedStone, Pyth Network and Binance oracles, with the possibility of adding more in the future.
+弹性价格源以更强大、更可靠的解决方案取代了 Comptroller 合约中使用的单一价格提供商。这一新组件不仅从各种链上数据源获取资产价格，还包含一个回退机制，以保护协议免受预言机故障的影响。目前，该功能集成了 Chainlink、RedStone、Pyth Network 和 Binance 预言机，未来可能会添加更多预言机。
 
-#### Governance Configurations
+#### 治理配置
 
-The Resilient Price Feeds system can be configured by the Venus governance via Venus Improvement Proposals (VIPs). These configurations include pause and resume functionalities for the oracle, price feed configurations, and fixed price settings, among others.
+金星协议 治理团队可以通过 金星 改进提案 (VIP) 对弹性价格源系统进行配置。这些配置包括预言机的暂停和恢复功能、价格源配置以及固定价格设置等。
 
-### Safety Measures
+### 安全措施
 
-In implementing the Resilient Price Oracle, several safety measures have been adopted to ensure the security and continuity of the Venus Protocol:
+在实施弹性价格预言机的过程中，我们采取了多项安全措施，以确保 金星 协议的安全性和持续性：
 
-* **Price Continuity:** Asset prices pre and post upgrade were validated in a simulated environment to ensure consistency.
-* **Testnet Deployment:** The oracles have been deployed and tested in the Venus Protocol testnet environment.
-* **Auditing:** The code has been audited by OpenZeppelin, Peckshield, Certik, and Hacken.
+* **价格持续性：** 我们在模拟环境中验证了升级前后的资产价格，以确保价格一致性。
+
+* **测试网部署：** 预言机已在 金星 协议测试网环境中部署和测试。
+
+* **审计：** 代码已通过 OpenZeppelin、Peckshield、Certik 和 Hacken 的审计。
 
 <figure><img src="../.gitbook/assets/17b75928-d6a2-4207-9a0b-89d1d41690d4.png" alt=""><figcaption></figcaption></figure>
 
-### Correlated Token Oracles
+### 相关代币预言机
 
-For correlated tokens, like Liquid Staked Tokens (LST), best practice suggests oracles quote first smart contracts to get the exchange rate between the correlated assets, and then multiply that by the USD market price of the second token to complete the calculation.
+对于类似 Liquid Staked Tokens (LST) 的关联代币，最佳实践建议预言机首先使用智能合约报价来获取关联资产之间的汇率，然后将其乘以第二个代币的美元市场价格，从而完成计算。
 
-In Venus we use dedicated oracles for each LST asset in order to calculate the price as follows:
+在 Venus 中，我们为每种 LST 资产使用专用预言机来计算价格，具体步骤如下：
 
-* convert the LST to the underlying tokens (using the exchange rate provided by the LST contracts)
-* convert the underlying token calculated in the previous step to USD, using a “traditional” oracle based on market price
+* 将 LST 转换为底层代币（使用 LST 合约提供的汇率）
 
-The current list of correlated token oracles in Venus is:
+* 使用基于市场价格的“传统”预言机，将上一步计算出的底层代币转换为美元
 
-* `AnkrBNBOracle`. It returns the USD price of the [ankrBNB](https://bscscan.com/address/0x52F24a5e03aee338Da5fd9Df68D2b6FAe1178827) token, converting on-chain from ankrBNB to BNB using the exchange rate from the ankrBNB contract.
-* `BNBxOracle`. It returns the USD price of the [BNBx](https://bscscan.com/address/0x1bdd3Cf7F79cfB8EdbB955f20ad99211551BA275) token, converting on-chain from BNBx to BNB using the exchange rate from the [stake manager](https://bscscan.com/address/0x3b961e83400D51e6E1AF5c450d3C7d7b80588d28) contract.
-* `eBTCAccountantOracle` (instance of `EtherfiAccountantOracle`). It returns the USD price of the [eBTC](https://etherscan.io/token/0x657e8C867D8B37dCC18fA4Caead9C45EB088C642) token, converting on-chain from eBTC to WBTC using the exchange rate from the [Accountant](https://etherscan.io/address/0x1b293DC39F94157fA0D1D36d7e0090C8B8B8c13F) contract.
-* `PendleOracle`. It returns the USD price of the PT Pendle token, converting on-chain from the PT token to the underlying token using a Pendle market contract.
-* `SFraxOracle`. It returns the USD price of the [sFRAX](https://etherscan.io/token/0xa663b02cf0a4b149d2ad41910cb81e23e1c41c32) token, converting on-chain from sFRAX to FRAX using the exchange rate from the sFRAX contract.
-* `SlisBNBOracle`. It returns the USD price of the [slisBNB](https://bscscan.com/address/0xB0b84D294e0C75A6abe60171b70edEb2EFd14A1B) token, converting on-chain from slisBNB to BNB using the exchange rate from the [stake manager](https://bscscan.com/address/0x1adB950d8bB3dA4bE104211D5AB038628e477fE6) contract.
-* `AsBNBOracle`. It returns the USD price of the [asBNB](https://bscscan.com/address/0x77734e70b6E88b4d82fE632a168EDf6e700912b6) token, converting on-chain from asBNB to slisBNB using the exchange rate from the [asBNB minter](https://bscscan.com/address/0x2F31ab8950c50080E77999fa456372f276952fD8) contract.
-* `StkBNBOracle`. It returns the USD price of the [stkBNB](https://bscscan.com/address/0xc2E9d07F66A89c44062459A47a0D2Dc038E4fb16) token, converting on-chain from stkBNB to BNB using the exchange rate from the [stake pool](https://bscscan.com/address/0xC228CefDF841dEfDbD5B3a18dFD414cC0dbfa0D8) contract.
-* `WBETHOracle`. It returns the USD price of the [WBETH](https://bscscan.com/address/0xa2e3356610840701bdf5611a53974510ae27e2e1) token, converting on-chain from WBETH to BNB using the exchange rate from the WBETH contract.
-* `WeETHOracle`. It returns the USD price of the [weETH](https://etherscan.io/token/0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee) token, converting on-chain from weETH to eETH using the exchange rate from the [liquidity pool](https://etherscan.io/address/0x308861A430be4cce5502d0A12724771Fc6DaF216) contract, and assumming 1 eETH = 1 ETH.
-* `WeETHsOracle` (instance of `WeETHAccountantOracle`). It returns the USD price of the [weETHs](https://etherscan.io/token/0x917ceE801a67f933F2e6b33fC0cD1ED2d5909D88) token, converting on-chain from weETHs to WETH using the exchange rate from the [Accountant](https://etherscan.io/address/0xbe16605B22a7faCEf247363312121670DFe5afBE) contract.
-* `WstETHOracle`. It returns the USD price of the [wstETH](https://etherscan.io/token/0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0) token, converting on-chain from wstETH to stETH using the exchange rate from the [stETH](https://etherscan.io/token/0xae7ab96520de3a18e5e111b5eaab095312d7fe84) contract, and assumming 1 stETH = 1 ETH.
+Venus 中当前相关的代币预言机列表如下：
+
+* `AnkrBNBOracle`它返回 [ankrBNB](https://bscscan.com/address/0x52F24a5e03aee338Da5fd9Df68D2b6FAe1178827) 代币的美元价格，使用 ankrBNB 合约提供的汇率，在链上将 ankrBNB 转换为 BNB。
+
+* `BNBxOracle`。它返回 [BNBx](https://bscscan.com/address/0x1bdd3Cf7F79cfB8EdbB955f20ad99211551BA275) 代币的美元价格，使用 [stake manager](https://bscscan.com/address/0x3b961e83400D51e6E1AF5c450d3C7d7b80588d28) 合约提供的汇率，在链上将 BNBx 转换为 BNB。 * `eBTCAccountantOracle`（`EtherfiAccountantOracle` 的实例）。它返回 [eBTC](https://etherscan.io/token/0x657e8C867D8B37dCC18fA4Caead9C45EB088C642) 代币的美元价格，使用 [Accountant](https://etherscan.io/address/0x1b293DC39F94157fA0D1D36d7e0090C8B8B8c13F) 合约中的汇率，在链上将 eBTC 转换为 WBTC。
+
+* `PendleOracle`。它返回 PT Pendle 代币的美元价格，使用 Pendle 市场合约，在链上将 PT 代币转换为其底层代币。
+
+* `SFraxOracle`。它返回 [sFRAX](https://etherscan.io/token/0xa663b02cf0a4b149d2ad41910cb81e23e1c41c32) 代币的美元价格，使用 sFRAX 合约提供的汇率在链上将 sFRAX 转换为 FRAX。
+
+* `SlisBNBOracle`。它返回 [slisBNB](https://bscscan.com/address/0xB0b84D294e0C75A6abe60171b70edEb2EFd14A1B) 代币的美元价格，使用 [stake manager](https://bscscan.com/address/0x1adB950d8bB3dA4bE104211D5AB038628e477fE6) 合约提供的汇率，在链上将 slisBNB 转换为 BNB。
+
+* `AsBNBOracle`。它返回 [asBNB](https://bscscan.com/address/0x77734e70b6E88b4d82fE632a168EDf6e700912b6) 代币的美元价格，使用 [asBNB 铸造者](https://bscscan.com/address/0x2F31ab8950c50080E77999fa456372f276952fD8) 合约提供的汇率，在链上将 asBNB 转换为 slisBNB。
+
+* `StkBNBOracle`。它返回 [stkBNB](https://bscscan.com/address/0xc2E9d07F66A89c44062459A47a0D2Dc038E4fb16) 代币的美元价格，使用 [stake pool](https://bscscan.com/address/0xC228CefDF841dEfDbD5B3a18dFD414cC0dbfa0D8) 合约中的汇率，在链上将 stkBNB 转换为 BNB。
+
+* `WBETHOracle`。它返回 [WBETH](https://bscscan.com/address/0xa2e3356610840701bdf5611a53974510ae27e2e1) 代币的美元价格，使用 WBETH 合约中的汇率，在链上将 WBETH 转换为 BNB。 * `WeETHOracle`。它返回 [weETH](https://etherscan.io/token/0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee) 代币的美元价格，使用 [流动性池](https://etherscan.io/address/0x308861A430be4cce5502d0A12724771Fc6DaF216) 合约中的汇率，将 weETH 在链上转换为 eETH，并假设 1 eETH = 1 ETH。
+
+* `WeETHsOracle`（`WeETHAccountantOracle` 的实例）。它返回 [weETHs](https://etherscan.io/token/0x917ceE801a67f933F2e6b33fC0cD1ED2d5909D88) 代币的美元价格，使用 [Accountant](https://etherscan.io/address/0xbe16605B22a7faCEf247363312121670DFe5afBE) 合约中的汇率，将链上的 weETHs 转换为 WETH。
+
+* `WstETHOracle`。它返回 [wstETH](https://etherscan.io/token/0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0) 代币的美元价格，使用 [stETH](https://etherscan.io/token/0xae7ab96520de3a18e5e111b5eaab095312d7fe84) 合约中的汇率，将 wstETH 链上转换为 stETH，并假设 1 stETH = 1 ETH。
 
 {% hint style="warning" %}
 
-**Assumption on Liquid Staked Tokens**
+**关于流动性质押代币的假设**
 
-`WeETHOracle` and `WstETHOracle` assume a 1:1 price ratio between the LST and the underlying asset (e.g. 1 ETH = 1 stETH). The primary risks associated with this approach involve smart contract vulnerabilities and counterparty risks that could impact the redemption processes of the LSTs. In cases of substantial counterparty risk, particularly if the underlying tokens are not redeemable against the LSTs, the direct smart contract pricing might become unreliable. Here's our plan to mitigate such situations:
+`WeETHOracle` 和 `WstETHOracle` 假设流动性质押代币 (LST) 与基础资产之间的价格比率为 1:1（例如，1 ETH = 1 stETH）。这种方法的主要风险在于智能合约漏洞和交易对手风险，这些风险可能会影响LST的赎回流程。在交易对手风险较大的情况下，尤其是在底层代币无法用LST赎回的情况下，直接智能合约定价可能变得不可靠。以下是我们缓解此类情况的计划：
 
-* We will deploy two on-chain oracles for each LST token:
-  * The first oracle will return the price based on the assumption of a 1:1 ratio between the LST token and the underlying asset.
-  * The second oracle will return the price based on a secondary market feed (using Chainlink, for instance).
-* By default, the `ResilientOracle` will be configured to use only the oracle assuming a 1:1 ratio between the LST asset and the underlying, serving as the primary oracle.
-* The second oracle, which derives price from the market price feed without assuming a 1:1 ratio, will not be initially configured in our `ResilientOracle`.
-* We have implemented an off-chain monitoring system to track the prices returned by both oracles. In the event of a significant deviation over an extended period, the situation will be reviewed. It will be determined whether to switch the primary oracle from the one assuming a 1:1 ratio to the one that does not, or whether to temporarily include the latter as a pivot oracle in the `ResilientOracle` configuration.
+* 我们将为每个LST代币部署两个链上预言机：
 
-{% endhint %}
+* 第一个预言机将基于LST代币与底层资产1:1的比例假设返回价格。
 
-### Current configuration
+* 第二个预言机将基于二级市场数据（例如使用Chainlink）返回价格。
 
-#### BNB chain
+* 默认情况下，
 
 | Pool | Market | MAIN oracle | PIVOT oracle | FALLBACK oracle | Notes |
 |---|---|---|---|---|---|
