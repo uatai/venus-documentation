@@ -1,85 +1,84 @@
-# Delegating & Voting
+# 委托与投票
 
-### Overview
+### 概述
 
-Venus DAO is an autonomous and decentralized organization that functions via smart contracts on a blockchain, meaning it operates without any central authority or control. The purpose of DAOs is to facilitate trustless collaboration and decision-making among members, who can be individuals or entities involved in the organization. Governance within Venus DAO encompasses making decisions, establishing rules, and managing resources.
+金星 DAO 是一个自治且去中心化的组织，它通过区块链上的智能合约运作，这意味着它无需任何中央机构或控制即可运行。DAO 的目的是促进成员之间无需信任的协作和决策，成员可以是参与该组织的个人或实体。金星 DAO 的治理涵盖决策制定、规则建立和管理资源。
 
-### It includes the following components:
+### 它包含以下组成部分：
 
-**1/ Token Holders:** DAOs typically have a native token, representing membership and voting rights within the organization. For Venus Protocol, this native token is XVS. Token holders partake in the decision-making process by voting on proposals.
+**1/ 代币持有者：** DAO 通常拥有原生代币，代表其在组织内的成员资格和投票权。对于 金星 协议，这种原生代币是 XVS。代币持有者通过对提案进行投票来参与决策过程。
 
-**2/ Proposals:** Venus DAO members who stake XVS in the Vault can create proposals, which suggest changes, initiatives, or organizational actions. Proposals can span a variety of topics such as protocol upgrades, funding requests, or changes to the DAO's rules. To propose, one requires "Voting power" of 300,000 XVS. To vote on a proposal, one needs "Voting power" of 600,000 XVS, either individually owned or delegated by other members.
+**2/ 提案：** 在金库中质押 XVS 的 金星 DAO 成员可以创建提案，提出变更、倡议或组织行动建议。提案可以涵盖各种主题，例如协议升级、资金申请或 DAO 规则的变更。提出提案需要 300,000 XVS 的“投票权”。对提案进行投票需要 600,000 XVS 的“投票权”，可以是个人持有的，也可以是其他成员委托的。
 
-**3/ Voting:** Following a proposal's creation, token holders can vote on it. Venus DAO manages the voting process, queuing and voting on protocol updates within 48-hour timelocks. The voting method could entail a simple majority vote, a supermajority, or weighted voting based on each participant's token count, as is the case with Venus Protocol.
+**3/ 投票：**提案创建后，代币持有者即可对其进行投票。金星 DAO 管理投票流程，在 48 小时的时间锁内对协议更新进行排队和投票。投票方式可以是简单多数投票、绝对多数投票，或基于每位参与者代币数量的加权投票（金星 Protocol 也采用这种方式）。
 
-**4/ Voting Period:** Venus DAO recognizes three Venus Improvement Proposals (VIP) roles: Normal, Fast Track, and Critical. Each VIP role has a unique proposal threshold, timelock, and voting period, which can be configured by Governance. This duration allows token holders ample time to review, discuss, and cast their votes. The votes are tallied once the voting period concludes.
+**4/ 投票周期：**金星 DAO 认可三种 金星 改进提案 (VIP) 角色：普通、快速通道和关键。每种 VIP 角色都有其独特的提案门槛、时间锁和投票周期，这些都可以由治理层进行配置。此周期为代币持有者提供了充足的时间来审查、讨论和投票。投票期结束后，将对选票进行统计。
 
-**5/ Execution:** After a proposal garners support and votes, all Venus DAO members can execute the VIP directly in the Venus dapp through smart contracts.
+**5/ 执行：**提案获得支持和投票后，所有 金星 DAO 成员均可通过智能合约在 金星 dApp 中直接执行 VIP。
 
-**6/ Transparency and Auditability:** All Venus DAO transactions and governance activities take place on a public blockchain, enabling transparency and auditability for anyone interested. This level of transparency helps maintain accountability and minimizes potential fraud or manipulation risks.
+**6/ 透明度和可审计性：**所有 金星 DAO 交易和治理活动均在公共区块链上进行，确保所有感兴趣的人员都能参与其中，并进行审计。这种透明度有助于维护问责制，并将潜在的欺诈或操纵风险降至最低。
 
-It's crucial to understand that DAO governance is an evolving field, with different DAOs adopting unique governance structures and processes. The specific rules and mechanisms are continually refined and adapted to best meet the needs of all Venus DAO members.\
+需要注意的是，DAO 治理是一个不断发展的领域，不同的 DAO 采用独特的治理结构和流程。具体的规则和机制会不断完善和调整，以更好地满足所有 金星 DAO 成员的需求。
 
+### 代表投票权
 
-### Delegate Voting Power
+**步骤 1：访问 金星 治理门户**
 
-**Step 1: Visit the Venus Governance Portal**
+通过浏览器访问 金星 治理门户。网址为 <https://app.金星.io/governance>。
 
-Access the Venus governance portal via your browser. The URL is <https://app.venus.io/governance>.
+**步骤 2：连接你的钱包**
 
-**Step 2: Connect Your Wallet**
+点击屏幕右上角的“连接钱包”按钮。从下拉菜单中选择你的钱包，然后按照提示进行连接。
 
-On the top right corner of the screen, click on the "Connect Wallet" button. Choose your wallet from the dropdown menu and follow the prompts to connect.
+**步骤 3：委托你的投票权**
 
-**Step 3: Delegate Your Voting Power**
-
-Once your wallet is connected, click on the "Delegate" button in the Governance section. This will open up a new dialogue box.
+钱包连接成功后，点击“治理”部分的“委托”按钮。这将打开一个新的对话框。
 
 <figure><img src="../../.gitbook/assets/image (5) (2).png" alt=""><figcaption></figcaption></figure>
 
-**Step 4: Enter Your Address**
+**步骤 4：输入你的地址**
 
-In the new dialogue box, click on the "Paste your address" field. Your connected wallet address should automatically populate.
+在新对话框中，点击“粘贴你的地址”字段。你已连接的钱包地址应该会自动填充。
 
 <figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
-**Step 5: Redelegate Your Votes**
+**步骤 5：重新委托你的投票权**
 
-Click on the "Redelegate" button. This will submit the address for vote delegation.
+点击“重新委托”按钮。这将提交用于投票委托的地址。
 
 <figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
-**Step 6: Confirm the Transaction**
+**步骤 6：确认交易**
 
-A confirmation prompt will appear in your connected wallet (for example, MetaMask). Confirm the transaction to complete the voting power delegation process.
+你已连接的钱包（例如 MetaMask）中将出现确认提示。确认交易以完成投票权委托流程。
 
-Congratulations, you've now enabled your XVS in the vault to participate in Venus Protocol's governance. Your tokens are now ready to vote on upcoming VIP proposals. Remember, your engagement in the protocol’s decision-making process is vital for its future development and success.
+恭喜！你已在金库中启用你的 XVS，可以参与 金星 Protocol 的治理。你的代币现在可以对即将推出的 VIP 提案进行投票。请记住，你参与协议的决策过程对其未来的发展和成功至关重要。
 
-### Vote for a VIP
+### 为 VIP 投票
 
-#### Step 7: Select the VIP Proposal&#x20;
+#### 第 7 步：选择 VIP 提案
 
-To vote on a Venus Improvement Proposal (VIP), navigate to the list of active proposals on the Venus Governance Portal. Click on the title of the VIP you wish to vote on. _**Remember, your voting eligibility requires your address to be delegated.**_
+要对 金星 改进提案 (VIP) 进行投票，请导航至 金星 治理门户网站上的活跃提案列表。点击你想要投票的 VIP 的标题。**请注意，你的投票资格取决于你的地址是否已授权。**
 
 <figure><img src="../../.gitbook/assets/photo_5823567984126443310_y.jpg" alt=""><figcaption></figcaption></figure>
 
-#### Step 8: Cast Your Vote&#x20;
+#### 第 8 步：投票
 
-After selecting the VIP, you'll see voting options for the proposal. You can choose 'For' to vote in favor of the proposal, 'Against' to vote against it, or 'Abstain' to remain neutral.
+选择 VIP 后，你将看到该提案的投票选项。你可以选择“赞成”表示支持该提案，“反对”表示反对该提案，或选择“弃权”表示保持中立。
 
 <figure><img src="../../.gitbook/assets/photo_5823567984126443309_y.jpg" alt=""><figcaption></figcaption></figure>
 
-#### Step 9: Add a Comment&#x20;
+#### 步骤 9：添加评论
 
-Before you submit your vote, you have an option to provide a comment explaining the reasoning behind your decision. This step is not mandatory, but it contributes to a more transparent and inclusive voting process.
+在提交投票之前，你可以选择添加评论，解释你做出此决定的理由。此步骤并非强制性，但有助于使投票过程更加透明和包容。
 
 <figure><img src="../../.gitbook/assets/photo_5823567984126443308_y.jpg" alt=""><figcaption></figcaption></figure>
 
-#### Step 10: Submit Your Vote&#x20;
+#### 步骤 10：提交你的投票
 
-Once you've made your decision and optionally left a comment, click the 'Submit Vote' button to cast your vote.
+做出决定并（可选）添加评论后，点击“提交投票”按钮即可投票。
 
 <figure><img src="../../.gitbook/assets/photo_5823567984126443307_y.jpg" alt=""><figcaption></figcaption></figure>
 
-Congratulations, you've successfully voted on a VIP proposal! Your participation is integral to the development and success of the Venus Protocol. Thank you for your contribution to our community's decision-making process. Remember, every vote counts in shaping the future of Venus Protocol.
+恭喜你，你已成功投票支持一项 VIP 提案！你的参与对 金星 Protocol 的发展和成功至关重要。感谢你为我们社区的决策过程做出的贡献。请记住，每一票都对塑造 金星 Protocol 的未来至关重要。
 

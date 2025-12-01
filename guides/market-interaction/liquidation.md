@@ -1,253 +1,335 @@
-# Liquidations
+# 清算
 
-This is a step-by-step guide on how to perform liquidations on the Venus Protocol. Liquidations involve seizing collateral from under-collateralized accounts to repay outstanding debts. The instructions are targeted towards developers or bots that aim to automate the liquidation process.
+本指南将逐步介绍如何在 金星 协议上执行清算。清算是指从抵押不足的账户中扣押抵押品以偿还未偿债务。本指南主要面向旨在自动化清算流程的开发者或机器人。
 
-## Account Liquidity Calculations
+## 账户流动性计算
 
-Venus Protocol uses two calculations to determine account liquidity: Collateral Factor (CF) and Liquidation Threshold (LT).
+金星 协议使用两种计算方法来确定账户流动性：抵押因子 (CF) 和清算阈值 (LT)。
 
-### Collateral Factor (CF)
+### 抵押因子 (CF)
 
-Collateral Factor is the percentage of the supplied funds that can be used to cover a loan. `Comptroller.getAccountLiquidity` in the Core Pool and `Comptroller.getBorrowingPower` in Isolated Pools return the liquidity or an account. They use the Resilient Oracle to retrieve the value of the asset and the collateral factor for the market to determine the percentage of supply can be used as collateral. Relying on `getBorrowingPower` is not sufficient for identifying accounts in need of liquidation on Isolated Pools.
+抵押因子是指可用于偿还贷款的资金百分比。核心池中的 `Comptroller.getAccountLiquidity` 和独立池中的 `Comptroller.getBorrowingPower` 会返回账户的流动性。它们使用 Resilient Oracle 来检索资产价值和市场抵押因子，从而确定可用于抵押的资金百分比。仅依靠 `getBorrowingPower` 不足以识别独立池中需要清算的账户。
 
-### Liquidation Threshold (LT)
+### 清算阈值 (LT)
 
-The Liquidation Threshold represents the point at which an account becomes under-collateralized, triggering the possibility of liquidation. In the Core Pool this is the same as the collateral factor. In Isolated Pools, the LT can be retrieved with `Comptroller.getAccountLiquidity`.
+清算阈值 (LT) 表示账户抵押不足，触发清算的临界点。在核心池中，LT 与抵押因子相同。在独立池中，可以使用 `Comptroller.getAccountLiquidity` 获取 LT。
 
-Liquidators often use external monitoring systems or other strategies to accurately identify under-collateralized accounts.
+清算人通常使用外部监控系统或其他策略来准确识别抵押不足的账户。
 
 {% hint style="info" %}
-**Iterating over all accounts and checking the CF and LT for every account is extremely inefficient.**
 
-Instead, liquidators should rely on off-chain computations and maintain an off-chain mapping for accounts and balances. Using functions like `vTokenBalancesAll` and `vTokenUnderlyingPriceAll` from PoolLens can help retrieve balances and prices efficiently for multiple vTokens associated with an account.
+**遍历所有账户并检查每个账户的抵押因子 (CF) 和清算阈值 (LT) 效率极低。**
+
+清算人应该依赖链下计算，并维护账户和余额的链下映射。使用 PoolLens 中的 `vTokenBalancesAll` 和 `vTokenUnderlyingPriceAll` 等函数可以高效地检索与账户关联的多个 vToken 的余额和价格。
+
 {% endhint %}
 
-By combining the information obtained from these functions, one can accurately identify under-collateralized accounts that are suitable for liquidation.
+通过结合这些函数获取的信息，可以准确识别适合清算的抵押不足账户。
 
-### Minimum Liquidatable Collateral
+### 最低可清算抵押品
 
-The `Comptroller.minLiquidatableCollateral` variable represents the minimal collateral in USD required for regular (non-batch) liquidations. Accounts with collateral below this threshold may not be eligible for non-batch liquidations. It's defined in USD value (18 decimals scale).
+`Comptroller.minLiquidatableCollat​​eral` 变量表示常规（非批量）清算所需的最低抵押品金额（以美元计）。抵押品低于此阈值的账户可能不符合非批量清算的条件。该值以美元为单位（小数点后 18 位）。
 
-## Finding Under-Collateralized Accounts
+## 查找抵押不足的账户
 
-The first step to performing a liquidation is to identify under-collateralized accounts. Here's a suggested approach to finding under-collateralized accounts:
+执行清算的第一步是识别抵押不足的账户。以下是查找抵押不足账户的建议方法：
 
-1. Create a record of account balances: To identify under-collateralized accounts efficiently, liquidators can maintain an off-chain mapping of accounts and balances by indexing market events to detect new positions and update existing ones:
-   * `Mint`: Event emitted when tokens are minted.
-   * `Redeem`: Event emitted when tokens are redeemed.
-   * `Borrow`: Event emitted when underlying is borrowed.
-   * `RepayBorrow`: Event emitted when a borrow is repaid. By listening to these events, liquidators can track changes in positions and update the balances of users accordingly.
+1. 创建账户余额记录：为了高效地识别抵押不足的账户，清算人可以通过索引市场事件来维护账户和余额的链下映射，从而检测新的仓位并更新现有仓位：
 
-Consider using a subgraph to index these events.
+* `Mint`：代币铸造时触发的事件。
 
-2. Get account balances: Use the `vTokenBalancesAll` function provided by PoolLens (VenusLens on the Core Pool) to retrieve supply and borrow balances for multiple vTokens associated with an account. This function takes an array of vTokens and the account address as parameters.
-3. Get underlying asset prices: Use the `vTokenUnderlyingPriceAll` function provided by the PoolLens (VenusLens on the Core Pool) to retrieve the underlying asset prices for multiple vTokens. This function takes an array of vTokens as a parameter.
-4. Calculate liquidity shortfall: With the supply and borrow balances obtained from step 2 and the underlying asset prices from step 3, calculate the liquidity shortfall for each account. This can be done by taking the scalar product of the balances and prices and comparing them against the LT values.
+* `Redeem`：代币赎回时触发的事件。
 
-By following this approach, you can efficiently identify under-collateralized accounts based on the CF and LT calculations.
+* `Borrow`：基础资产借入时触发的事件。
+
+* `RepayBorrow`：借款偿还时触发的事件。通过监听这些事件，清算人可以跟踪仓位变化并相应地更新用户余额。
+
+建议使用子图来索引这些事件。
+
+2. 获取账户余额：使用 PoolLens（核心池上的 VenusLens）提供的 `vTokenBalancesAll` 函数来检索与账户关联的多个 vToken 的供应量和借款余额。此函数接受一个 vToken 数组和账户地址作为参数。
+
+3. 获取底层资产价格：使用 PoolLens（核心池上的 VenusLens）提供的 `vTokenUnderlyingPriceAll` 函数来获取多个 vToken 的底层资产价格。此函数接受一个 vToken 数组作为参数。
+
+4. 计算流动性缺口：利用步骤 2 中获得的供应量和借款余额，以及步骤 3 中获得的底层资产价格，计算每个账户的流动性缺口。这可以通过计算余额和价格的标量积，并将其与 LT 值进行比较来实现。
+
+通过这种方法，您可以根据 CF 和 LT 的计算结果有效地识别抵押不足的账户。
 
 {% hint style="warning" %}
-Please note that the functions mentioned above are provided by PoolLens and may require integration within your liquidation bot. Additionally, it's important to stay updated with any changes or updates to Venus Protocol that may impact the process of finding under-collateralized accounts.
+
+请注意，上述函数由 PoolLens 提供，可能需要集成到您的清算机器人中。此外，请务必关注 Venus Protocol 的任何变更或更新，这些变更或更新可能会影响查找抵押不足账户的过程。
+
 {% endhint %}
 
-## Performing the Liquidation
+## 执行清算
 
-Once an under-collateralized account has been identified, the liquidation process can be initiated using either `liquidateBorrow` , `liquidateAccount` or `healAccount` function. `liquidateBorrow` is provided by the relevant vToken contract (Liquidator contract on the Core Pool) whereas `liquidateAccount` and `healAccount` are provided in Comptroller. Here's an overview of the steps involved:
+一旦识别出抵押不足的账户，即可使用 `liquidateBorrow`、`liquidateAccount` 或 `healAccount` 函数启动清算流程。`liquidateBorrow` 由相关的 vToken 合约（核心池上的清算人合约）提供，而 `liquidateAccount` 和 `healAccount` 由 Comptroller 提供。以下是相关步骤概述：
 
 {% hint style="warning" %}
-Please note that `healAccount` is an extension of the liquidation mechanism to address handling of bad debt and offseting it with protocol revenue/fees. On the other hand, `liquidateAccount` allows batches of liquidations in a single transaction. In both cases, the total collateral must be lower than the threshold `Comptroller.minLiquidatableCollateral`. Those two functions are only available in Isolated Pools. For Core Pool `liquidateBorrow` function provided by `Liquidator` contract is the only available mechanism to perform liquidations.
+
+请注意，`healAccount` 是清算机制的扩展，用于处理坏账并用协议收入/费用进行抵消。另一方面，`liquidateAccount` 允许在单个交易中批量清算。在这两种情况下，总抵押品都必须低于阈值 `Comptroller.minLiquidatableCollat​​eral`。这两个函数仅在独立池中可用。对于核心池，由“清算人”合约提供的 `liquidateBorrow` 函数是执行清算的唯一可用机制。
+
 {% endhint %}
 
-1. Calculate the liquidation amount: Determine the amount of debt to be repaid and the collateral to be seized. This is typically calculated by examining the borrower's debt balance, the market's collateral factor, and any discounts or liquidation incentives offered.
-2. When performing the liquidation, there are 3 different types of liquidations that can be called, taking in mind the **collateral**, **minimum liquidatable collateral** and **solvency** of the account:
+1. 计算清算金额：确定待偿还的债务金额和待扣押的抵押品。这通常通过检查借款人的债务余额、市场抵押品系数以及任何折扣或清算激励措施来计算。
 
-* **Collateral > `minLiquidatableCollateral` -->** `liquidateBorrow()`: Call the `liquidateBorrow` function on the relevant vToken contract. This function requires several parameters, including the borrower's address, the liquidator's address, the amount of debt to be repaid, and the collateral to be seized. Refer to the vToken contract documentation for specific details on the function's required parameters.
+2. 执行清算时，可以根据账户的**抵押品**、**最低可清算抵押品**和**偿付能力**调用三种不同的清算类型：
+
+* **抵押品 > `minLiquidatableCollat​​eral` -->** `liquidateBorrow()`：在相关的 vToken 合约上调用 `liquidateBorrow` 函数。此函数需要几个参数，包括借款人的地址、清算人的地址、待偿还的债务金额和待扣押的抵押品。请参阅 vToken 合约文档，了解该函数所需参数的具体细节。
 
 {% hint style="info" %}
-**Example**
 
-Given:
+**示例**
 
-* Collateral Factor: 50%
-* Close Factor: 50%
-* Liquidation Threshold: 60%
-* Borrow Amount: $13,000
-* Collateral Amount: $20,000
-* Liquidation Incentive: 110%
-* Protocol Share Percentage: 5%
+已知：
 
-The borrowed amount is $1,000 above the liquidation threshold ($12,000), therefore the position is eligible for liquidation. Liquidation can be called with a repayment of up to $6,500 (borrow amount \* close factor). Let's assume the liquidator initiates the liquidation process with a repayment amount of $1,000 Let's Calculate the Collateral Seized Amount (the amount that is seized from the borrower's collateral):
+* 抵押率：50%
 
-`Collateral Seized Amount = Repayment Amount * Liquidation Incentive`
+* 平仓率：50%
 
-`Collateral Seized Amount = $1,000 * 1.1`
+* 清算门槛：60%
 
-`Collateral Seized Amount = $1,100`
+* 借款金额：13,000 美元
 
-Therefore, if the borrowed asset value reaches **$13,000** and the repayment amount is **$1,000**, the total collateral seized will be **$1,100** considering the liquidation incentive of 10%. In order to calculate what amount the liquidator will get we need to consider `treasuryPercentMantissa` (in the Core pool) or `protocolSeizeShareMantissa` (in the Isolated pools). This variable (`Protocol Share Percentage`) sets the percentage of the collateral seized that will go to the protocol. Let's assume that the protocol shares for liquidations is `5%` and calculate the liquidator received amount:
+* 抵押金额：20,000 美元
 
-`Liquidator Receive Amount = Collateral Seized - Protocol Shares`
+* 清算激励：110%
 
-`Protocol Shares = (Collateral Seized / Liquidation Incentive) * Protocol Share Percentage`
+* 协议份额百分比：5%
 
-`Protocol Shares = ($1,100 / 1.1) * 0.05 = $50`
+借款金额比清算门槛（12,000 美元）高出 1,000 美元，因此该头寸符合清算条件。清算时需偿还最高 6,500 美元（借款金额 * 平仓率）。假设清算人启动清算程序，偿还金额为 1,000 美元。我们来计算抵押品扣押金额（从借​​款人抵押品中扣押的金额）：
 
-`Liquidator Receive Amount = $1,100 - $50 = $1,050`
+抵押品扣押金额 = 偿还金额 * 清算激励
 
-In conclusion, the liquidator will provide **$1,000** for the liquidation. After the liquidation, the liquidator will receive **$1,050** and the rest **$50** will go to the protocol.
+抵押品扣押金额 = 1,000 美元 * 1.1
+
+抵押品扣押金额 = 1,100 美元
+
+因此，如果借款资产价值达到 13,000 美元，偿还金额为 1,000 美元，考虑到 10% 的清算激励，扣押的抵押品总额将为 1,100 美元。为了计算清算人将获得的金额，我们需要考虑核心池中的 `treasuryPercentMantissa` 或独立池中的 `protocolSeizeShareMantissa`。此变量（“协议份额百分比”）设定了分配给协议的抵押品百分比。假设清算协议的份额为 5%，并计算清算人收到的金额：
+
+“清算人收到的金额 = 抵押品金额 - 协议份额”
+
+“协议份额 = (抵押品金额 / 清算激励) * 协议份额百分比”
+
+“协议份额 = ($1,100 / 1.1) * 0.05 = $50”
+
+“清算人收到的金额 = $1,100 - $50 = $1,050”
+
+综上所述，清算人将为清算提供 **$1,000**。清算完成后，清算人将收到 **$1,050**，剩余的 **$50** 将分配给协议。
+
 {% endhint %}
 
-* **Collateral < minLiquidatableCollateral && account is solvent -->** `liquidateAccount()`: this function liquidates all borrows of the borrower.
+* **抵押品金额小于最小可清算抵押品金额且账户有偿付能力 -->** `liquidateAccount()`：此函数清算借款人的所有借款。
 
 {% hint style="info" %}
-**Example**
 
-* Collateral Factor: 50%
-* Liquidation Threshold: 60%
-* Min Liquidatable Collateral: $100
-* Borrow Amount: $60
-* Collateral Amount: $90
+**示例**
 
-Position is already eligible for liquidation since Borrow Amount >= $54. We should call `liquidateAccount()` because **collateral < $100** and account is **solvent**.
+* 抵押率：50%
+
+* 清算门槛：60%
+
+* 最低可清算抵押品：100 美元
+
+* 借款金额：60 美元
+
+* 抵押金额：90 美元
+
+由于借款金额 >= 54 美元，该头寸已符合清算条件。我们应该调用 `liquidateAccount()` 函数，因为**抵押品 < 100 美元** 且账户**无偿付能力**。
+
 {% endhint %}
 
-* **Collateral < minLiquidatableCollateral && account is insolvent -->** `healAccount()`: this function seizes all the remaining collateral from the borrower, requires the person initiating the liquidation (msg.sender) to repay the borrower's existing debt, and treats any remaining debt as bad debt. The sender has to repay a certain percentage of the debt, computed as `collateral / (borrows * liquidationIncentive)`
+* **抵押品 < 最低可清算抵押品且账户无偿付能力 -->** `healAccount()` 函数：此函数将从借款人处扣押所有剩余抵押品，要求发起清算的人员（msg.sender）偿还借款人现有债务，并将任何剩余债务视为坏账。发送方必须偿还一定比例的债务，计算公式为 `抵押品 / (借款 * 清算激励)`
 
 {% hint style="info" %}
-**Example**
 
-* Collateral Factor: 50%
-* Liquidation Threshold: 60%
-* Min Liquidatable Collateral: $100
-* Borrow Amount: $90
-* Collateral Amount: $60
+**示例**
 
-Position is eligible for liquidation and **collateral is < $100**, but the account is **insolvent**, so we need to call `healAccount()` to ensure that the remaining debt ($30) is treated as bad debt for the protocol.
+* 抵押品比例：50%
+
+* 清算阈值：60%
+
+* 最低可清算抵押品：100 美元
+
+* 借款金额：90 美元
+
+* 抵押品金额：60 美元
+
+该头寸符合清算条件，且**抵押品金额低于 100 美元**，但账户**资不抵债**，因此我们需要调用 `healAccount()` 函数，以确保剩余债务（30 美元）被协议视为坏账。
+
 {% endhint %}
 
-3. Handle liquidation results: After invoking `liquidateBorrow`, monitor the transaction's success and handle any resulting events or errors. Successful liquidations will transfer the seized collateral to the liquidator's address and repay the debt from the borrower's account.
+3. 处理清算结果：调用 `liquidateBorrow` 函数后，监控交易是否成功，并处理任何由此产生的事件或错误。清算成功后，被扣押的抵押品将转移至清算人的地址，并从借款人的账户中偿还债务。
 
 {% hint style="warning" %}
-Please note that the liquidation process involves complex calculations and requires a deep understanding of Venus Protocol. It's essential to thoroughly test and validate your liquidation bot before deploying it in a production environment. Additionally, keep track of any changes or updates to the Venus Protocol that may impact the liquidation process.
+
+请注意，清算过程涉及复杂的计算，需要对 Venus 协议有深入的了解。在将清算机器人部署到生产环境之前，务必对其进行彻底的测试和验证。此外，请密切关注 Venus 协议的任何变更或更新，这些变更或更新可能会影响清算过程。
+
 {% endhint %}
 
-## Forced liquidations
+## 强制清算
 
-Usually, accounts are only eligible to be liquidated if they are under-collateralized, as described in the previous sections. An exception is if "forced liquidations" are enabled for a market or an individual account in a market. In this case, borrow positions can be liquidated in that market even when the health rate of the account is greater than 1 (i.e. when the account is sufficiently collateralized). Additionally, the close factor check is ignored, allowing the liquidation of 100% of the debt in one transaction.
+通常情况下，账户只有在抵押不足的情况下才有资格被清算，如前几节所述。但如果某个市场或市场中的某个账户启用了“强制清算”功能，则情况有所不同。在这种情况下，即使账户的健康度大于 1（即账户抵押充足），该市场中的借款头寸也可能被清算。此外，关闭因子检查将被忽略，允许在一次交易中清算 100% 的债务。
 
-This feature is based on the implementation done by Compound V2 [here](https://github.com/compound-finance/compound-protocol/pull/123/files). Compound V2 allows "forced liquidations" on markets as soon as the Collateral factor is zero, the Reserve factor is 100% and the borrows are paused. Venus defines a feature flag to enable/disable "forced liquidations", configurable directly via VIP, not based on other parameters. Compound community talked about this feature in [this post](https://www.comp.xyz/t/deprecate-fei-market/3513).
+此功能基于 Compound V2 的实现[此处](https://github.com/compound-finance/compound-protocol/pull/123/files)。Compound V2 允许在抵押因子为零、储备因子为 100% 且借款暂停时对市场进行“强制清算”。Venus 定义了一个功能标志来启用/禁用“强制清算”，该标志可直接通过 VIP 配置，而非基于其他参数。Compound 社区在[此帖](https://www.comp.xyz/t/deprecate-fei-market/3513)中讨论了此功能。
 
-On Venus, forced liquidations can be enabled either for an entire market (all borrow positions in the market can be forcefully liquidated), or for individual accounts in a market (only the borrows of a particular account can be forcefully liquidated in the market).
+在 Venus 中，强制清算可以针对整个市场启用（市场中的所有借款头寸都将被强制清算），也可以针对市场中的单个账户启用（仅特定账户的借款可以在市场中被强制清算）。
 
-To check if forced liquidations are enabled for an entire market, the function `Comptroller.isForcedLiquidationEnabled(address vToken)` can be called on the Comptroller contract of the pool with the address of the market. To check if forced liquidations are enabled for an individual account in the market, the function `Comptroller.isForcedLiquidationEnabledForUser(address borrower, address vToken)` can be used, providing the account and market address as arguments.
+要检查整个市场是否启用强制清算，可以调用资金池的 Comptroller 合约中的 `Comptroller.isForcedLiquidationEnabled(address vToken)` 函数，并传入市场地址。要检查市场中单个账户是否启用强制清算，可以使用 `Comptroller.isForcedLiquidationEnabledForUser(address borrower, address vToken)` 函数，并将账户地址和市场地址作为参数传入。
 
 {% hint style="info" %}
-**Availability**: Forced Liquidations for entire markets are available in the Core pool since [VIP-172](https://app.venus.io/#/governance/proposal/172), in the Isolated pools since [VIP-186](https://app.venus.io/#/governance/proposal/186). Forced Liquidations for individual accounts are available only in the Core pool since [VIP-210](https://app.venus.io/#/governance/proposal/210).
+
+**可用性**：自 [VIP-172](https://app.venus.io/#/governance/proposal/172) 版本起，核心资金池已启用整个市场的强制清算；自 [VIP-186](https://app.venus.io/#/governance/proposal/186) 版本起，独立资金池已启用整个市场的强制清算。自 [VIP-210](https://app.venus.io/#/governance/proposal/210) 起，强制清算仅适用于核心资金池中的个人账户。
+
 {% endhint %}
 
 {% hint style="info" %}
-#### Example
 
-Given:
+#### 示例
 
-* `vUSDT` collateral factor: 80%
-* 1 USDT = 1 BUSD = 1 USDC = $1 (for simplicity)
-* Close factor: 50%
-* Liquidation incentive: 10%
-* User with the following positions:
-  * Supply: 500 USDT
-  * Borrow: 200 BUSD
-  * Borrow: 100 USDC
+已知：
 
-The health rate for this user would be `(500 * 0.8) / (200 + 100) = 1.33`. So, in normal circumstances, this user is not eligible to be liquidated.
+* `vUSDT` 抵押率：80%
 
-Now, let’s say we enable the **forced liquidations in the BUSD market** (via VIP). Then:
+* 1 USDT = 1 BUSD = 1 USDC = $1（为简化起见）
 
-* Anyone will be allowed to liquidate the BUSD position of the previous user. Moreover, the close factor limit won’t be taken into account. So, the following liquidation would be doable:
-  * Repay amount: 200 BUSD
-  * Collateral market to seize: USDT
-* By doing this liquidation, 220 USDT (repay amount + liquidation incentive) would be seized from the user’s collateral.
-* After the liquidation, the global position of our user would be:
-  * Supply: 280 USDT (500 USDT - 220 USDT seized during the liquidation)
-  * Borrow: 0 BUSD
-  * Borrow: 100 USDC
-* So, the new health rate would be `(280 * 0.8 / 100) = 2.24`. They will be still ineligible for regular liquidations
-* Because the forced liquidation is not enabled in the USDC market, the USDC debt cannot be liquidated (because the health rate is greater than 1).
+* 平仓率：50%
+
+* 清算激励：10%
+
+* 用户持有以下仓位：
+
+* 供应：500 USDT
+
+* 借入：200 BUSD
+
+* 借入：100 USDC
+
+该用户的健康率为 `(500 * 0.8) / (200 + 100) = 1.33`。因此，在正常情况下，该用户不符合强制清算的条件。
+
+现在，假设我们启用**BUSD市场的强制清算**（通过VIP）。那么：
+
+* 任何人都可以清算前一位用户的 BUSD 头寸。此外，平仓因子限制将不予考虑。因此，可以进行以下清算：
+
+* 偿还金额：200 BUSD
+
+* 扣押抵押品：USDT
+
+* 通过此次清算，将从用户的抵押品中扣押 220 USDT（偿还金额 + 清算奖励）。
+
+* 清算后，用户的全局头寸将为：
+
+* 供应量：280 USDT（500 USDT - 清算期间扣押的 220 USDT）
+
+* 借入：0 BUSD
+
+* 借入：100 USDC
+
+* 因此，新的健康比率将为 `(280 * 0.8 / 100) = 2.24`。他们仍然不符合常规清算的条件。
+
+* 由于 USDC 市场未启用强制清算，因此 USDC 债务无法清算（因为健康度大于 1）。
+
 {% endhint %}
 
-## Force VAI Debt First
+## 强制优先清算 VAI 债务
 
 {% hint style="danger" %}
-This feature is disabled. Liquidators will have to change their codebase to consider the forced sequence of liquidations when there is a VAI debt. After having the confirmation from the main Liquidators that they have adapted their code, a VIP will be proposed to enable this feature.
+
+此功能已禁用。清算人需要修改其代码库，以便在存在 VAI 债务时考虑强制清算顺序。在主要清算人确认已修改代码后，我们将提出 VIP 请求以启用此功能。
+
 {% endhint %}
 
-In the previous section, liquidations are carried out on all accounts without taking into consideration specific amounts of VAI debt. The `forceVAILiquidate` feature enhances the liquidation process by forcing liquidations of borrowers with VAI debt greater than `minLiquidatableVAI`. Forcing VAI liquidations allows the protocol to better manage risk and prevent potential losses due to excessive VAI debt accumulation.
+在前文中，清算是对所有账户进行的，不考虑具体的 VAI 债务金额。`forceVAILiquidate` 功能通过强制清算 VAI 债务超过 `minLiquidatableVAI` 的借款人来增强清算流程。强制清算 VAI 债务有助于协议更好地管理风险，并防止因 VAI 债务过度累积而造成的潜在损失。
 
-For borrowers with outstanding VAI debt, the force VAI liquidation first includes checks to ensure that only eligible accounts are liquidated before starting the liquidation process.
+对于有未偿 VAI 债务的借款人，强制清算 VAI 首先会进行检查，以确保只有符合条件的账户才会被清算，然后再启动清算流程。
 
-#### Checks
+#### 检查
 
-1. Check that VAI liquidations are not paused in Comptroller.
-2. The forceVAILiquidate flag is set to true.
-3. Verify whether the borrower's VAI debt is greater than the minimum amount of liquidatable VAI (initially 1,000 VAI).
+1. 检查 Comptroller 中 VAI 清算是否未暂停。
+
+2. forceVAILiquidate 标志是否设置为 true。
+
+3. 验证借款人的 VAI 债务是否大于可清算 VAI 的最低金额（初始值为 1,000 VAI）。
 
 {% hint style="warning" %}
-If the above conditions are true then the protocol checks that the current vToken sent to be liquidated is VAI, otherwise the liquidation fails.
+
+如果以上条件均满足，则协议会检查当前用于清算的 vToken 是否为 VAI，否则清算失败。
+
 {% endhint %}
 
 {% hint style="info" %}
-**Example 1**
 
-Given:
+**示例 1**
 
-* this feature is enabled
-* a user is eligible to be liquidated with the following debt:
-  * 2,000 VAI
-  * 5,000 USDT
+已知：
 
-Liquidators will be required to liquidate the VAI position first because it is greater than `minLiquidatableVAI`. If they try to liquidate first the USDT position, the liquidation transaction will be reverted.
+* 此功能已启用
+
+* 用户负债如下，可被清算：
+
+* 2,000 VAI
+
+* 5,000 USDT
+
+清算人必须先清算 VAI 头寸，因为其大于 `minLiquidatableVAI`。如果清算人尝试先清算 USDT 头寸，则清算交易将被撤销。
+
 {% endhint %}
 
 {% hint style="info" %}
-**Example 2**
 
-Given:
+**示例 2**
 
-* this feature is enabled
-* a user eligible to be liquidated with the following debts:
-  * 500 VAI
-  * 5,000 USDT
+已知：
 
-Liquidators will be allowed to liquidate first the VAI position **or** the USDT position. Both liquidations will work because the VAI debt is less than `minLiquidatableVAI`
+* 此功能已启用
+
+* 用户负债如下，可被清算：
+
+* 500 VAI
+
+* 5,000 USDT
+
+清算人可以先清算 VAI 头寸**或** USDT 头寸。两次清算均可成功，因为 VAI 债务小于 `minLiquidatableVAI`。
+
 {% endhint %}
 
-## Automatic Income Allocation
+## 自动收益分配
 
-In the Core Pool, liquidation income is transferred to the Liquidator contract in the form of vTokens. During a liquidation transaction, the Liquidator contract will try to redeem the protocol's portion of the liquidation incentive in vTokens for the underlying tokens. If the redemption process is successful, the underlying tokens will be sent to the `ProtocolShareReserve` contract. However, if the redemption fails the underlying tokens will be added to a list of pending redemptions and the Liquidator contract will try to redeem the pending redemptions again in subsequent liquidation transactions.
+在核心池中，清算收益以 vToken 的形式转移至清算人合约。在清算交易期间，清算人合约将尝试用 vToken 兑换协议在清算激励中所占的份额，以换取相应的底层代币。如果兑换成功，底层代币将被发送至 `ProtocolShareReserve` 合约。但是，如果兑换失败，底层代币将被添加到待赎回列表中，清算人合约将在后续的清算交易中再次尝试赎回这些待赎回的代币。
 
-### Distributing Seized Amount
+### 分配扣押金额
 
-The seized collateral is distributed between the Liquidator and the `ProtocolShareReserve` contract:
+扣押的抵押品将在清算人和 `ProtocolShareReserve` 合约之间进行分配：
 
-1. **Liquidator's Share:**
-   * The Liquidator receives a designated portion of the collateral as an incentive.
-2. **`ProtocolShareReserve` contract's Share:**
-   * The remaining portion of the collateral is sent to the `ProtocolShareReserve` contract.
-3. **Conversion (if applicable):**
-   * **BNB:**
-     * If the seized collateral is BNB, it is converted to Wrapped BNB (wBNB) before sending it to the `ProtocolShareReserve` contract.
-   * **Other VTokens:**
-     * For other VTokens, the underlying tokens are redeemed and transferred to the `ProtocolShareReserve` contract.
+1. **清算人份额：**
 
-### Redemption Handling
+* 清算人将获得指定份额的抵押品作为激励。
 
-The Liquidator contract attempts to redeem the protocol's portion of the liquidation incentive in underlying tokens for the VTokens:
+2. **`ProtocolShareReserve` 合约份额：**
 
-1. **Successful Redemption:**
-   * If the redemption is successful, the underlying tokens are sent to the `ProtocolShareReserve` contract.
-2. **Failed Redemption:**
-   * If the redemption fails due to insufficient liquidity or other reasons, the VTokens representing the pending redemption are added to a list for later processing.
+* 剩余的抵押品将发送至 `ProtocolShareReserve` 合约。
 
-### Pending Redemption Management
+3. **转换（如适用）：**
 
-Subsequent liquidation transactions leverage the list of pending redemptions: during each liquidation, the Liquidator contract attempts to redeem pending VTokens for their underlying tokens, and send these underlying tokens to the `ProtocolShareReserve` contract.
+* **BNB：**
+
+* 如果扣押的抵押品是 BNB，则在发送至 `ProtocolShareReserve` 合约之前，会将其转换为 Wrapped BNB (wBNB)。
+
+* **其他 VToken：**
+
+* 对于其他 VToken，其底层代币将被赎回并转移至 `ProtocolShareReserve` 合约。
+
+### 赎回处理
+
+清算人合约会尝试以底层代币的形式赎回协议在 VToken 清算激励中所占的份额：
+
+1. **赎回成功：**
+
+* 如果赎回成功，则底层代币将被发送至 `ProtocolShareReserve` 合约。
+
+2. **赎回失败：**
+
+* 如果由于流动性不足或其他原因导致赎回失败，则代表待赎回的 VToken 将被添加到列表中以供后续处理。
+
+### 待赎回管理
+
+后续清算交易将利用待赎回列表：在每次清算期间，清算人合约会尝试将待赎回的 VToken 兑换为其底层代币，并将这些底层代币发送到 `ProtocolShareReserve` 合约。
