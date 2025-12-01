@@ -1,6 +1,6 @@
-# VAI Unitroller
+# VAI 单位审计师
 
-This is the proxy contract for the VAIComptroller
+这是 VAI 单位审计师的代理合同。
 
 # Solidity API
 
@@ -16,7 +16,7 @@ function _setPendingImplementation(address newPendingImplementation) public retu
 
 ### \_acceptImplementation
 
-Accepts new implementation of comptroller. msg.sender must be pendingImplementation
+接受新的 comptroller 实现。msg.sender 必须处于 pendingImplementation 状态。
 
 ```solidity
 function _acceptImplementation() public returns (uint256)
@@ -26,13 +26,13 @@ function _acceptImplementation() public returns (uint256)
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| \[0] | uint256 | uint 0=success, otherwise a failure (see ErrorReporter.sol for details) |
+| \[0] | uint256 | uint 0 表示成功，否则表示失败（详情请参阅 ErrorReporter.sol） |
 
 ---
 
 ### \_setPendingAdmin
 
-Begins transfer of admin rights. The newPendingAdmin must call `_acceptAdmin` to finalize the transfer.
+开始管理员权限转移。newPendingAdmin 必须调用 `_acceptAdmin` 来完成转移。
 
 ```solidity
 function _setPendingAdmin(address newPendingAdmin) public returns (uint256)
@@ -42,19 +42,19 @@ function _setPendingAdmin(address newPendingAdmin) public returns (uint256)
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| newPendingAdmin | address | New pending admin. |
+| newPendingAdmin | address | 新增待处理管理员。 |
 
 #### Return Values
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| \[0] | uint256 | uint 0=success, otherwise a failure (see ErrorReporter.sol for details) |
+| \[0] | uint256 | uint 0 表示成功，否则表示失败（详情请参阅 ErrorReporter.sol） |
 
 ---
 
 ### \_acceptAdmin
 
-Accepts transfer of admin rights. msg.sender must be pendingAdmin
+接受管理员权限转移。msg.sender 必须为 pendingAdmin。
 
 ```solidity
 function _acceptAdmin() public returns (uint256)
@@ -64,6 +64,6 @@ function _acceptAdmin() public returns (uint256)
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| \[0] | uint256 | uint 0=success, otherwise a failure (see ErrorReporter.sol for details) |
+| \[0] | uint256 | uint 0 表示成功，否则表示失败（详情请参阅 ErrorReporter.sol） |
 
 ---

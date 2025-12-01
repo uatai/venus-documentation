@@ -1,16 +1,17 @@
 # XVS
 
-### Overview
+### 概述
 
-XVS is the native token of Venus Protocol and serves as its governance token. By staking XVS tokens in the vault, users gain voting power proportionate to the amount staked. This voting power enables them to participate in the voting process for Venus Improvement Proposals (VIPs), thereby playing a critical role in the development and evolution of the Venus Protocol.
+XVS 是 金星 协议的原生代币，也是其治理代币。用户通过在金库中质押 XVS 代币，即可获得与其质押数量成比例的投票权。凭借此投票权，用户可以参与 金星 改进提案 (VIP) 的投票过程，从而在 金星 协议的开发和演进中发挥关键作用。
 
-Furthermore, users who stake their XVS tokens in the vault have the potential to earn yield, creating an incentive for participation in the Venus governance process. This aligns the interests of XVS holders with the overall health and success of the Venus Protocol.
+此外，在金库中质押 XVS 代币的用户还有机会获得收益，从而激励他们参与 金星 治理。这使得 XVS 持有者的利益与 金星 协议的整体健康和成功紧密相连。
 
-### Next Steps and Future of XVS
+### XVS 的后续步骤和未来
 
-The upcoming Venus Prime program adds a new dimension to the utility of XVS tokens. As Venus Protocol continues to innovate:
+即将推出的 金星高级用户Venus Prime 计划将为 XVS 代币的效用增添新的维度。随着 金星 协议的不断创新：
 
-* The launch of Venus Prime will provide opportunities for additional yield to committed users, using protocol's revenue instead of just relying on the token supply.
-* The program will introduce unique, non-transferable tokens for eligible participants, adding a new layer of user interaction.
+* 金星用户高级计划Venus Prime 的推出将为忠实用户提供更多收益机会，这些收益将来自协议的收益，而不仅仅是代币供应。
 
-These developments further emphasize the importance of the XVS token in the ecosystem, providing holders with more ways to earn and participate in the protocol's future.
+* 该计划将为符合条件的参与者推出独特的、不可转让的代币，从而增加用户交互的新层面。
+
+这些进展进一步凸显了 XVS 代币在生态系统中的重要性，为持有者提供了更多赚取收益和参与协议未来发展的方式。
