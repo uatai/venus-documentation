@@ -1,19 +1,25 @@
-# Community Resources
+# 社区资源
 
-## Monitoring
+## 监控
 
-* [Dune dashboard](https://dune.com/xvslove\_team/venus-protocol-dashboard)
-* [Chaos labs analytics](https://community.chaoslabs.xyz/venus/risk/overview)
-* [Messari dashboard](https://messari.io/project/venus/protocols/venus)
+* [Dune 控制面板](https://dune.com/xvslove\_team/venus-protocol-dashboard)
 
-## Telegram Groups
+* [Chaos Labs 分析](https://community.chaoslabs.xyz/venus/risk/overview)
 
-* [Venus Discussion Group](https://t.me/venusprotocol)
-* [Venus Announcement Channel](https://t.me/VenusNewsBroadcast)
+* [Messari 控制面板](https://messari.io/project/venus/protocols/venus)
 
-### Telegram Bots
+## Telegram 群组
 
-* [Venus Stats](https://t.me/venusstats). Total supply, total borrow, total reserves, XVS Vault stats, Prime holders, etc.
-* [Venus Whales](https://t.me/venuswhaleswatch). Watching for significant sum movement (> $1M) on Venus Protocol
-* [Venus Liquidations](https://t.me/venusliqwatch). Watching on liquidation events of Venus Protocol
-* [Venus Governance](https://t.me/venusgovwatch). Watching governance proposals (VIP) of Venus Protocol
+* [金星协议 讨论组](https://t.me/venusprotocol)
+
+* [金星协议 公告频道](https://t.me/VenusNewsBroadcast)
+
+### Telegram 机器人
+
+* [金星协议 统计](https://t.me/venusstats)。总供应量、总借款量、总储备量、XVS 金库统计数据、Prime 持有者等。
+
+* [金星协议 鲸鱼](https://t.me/venuswhaleswatch)。关注 金星协议 的重大资金流动（> 100 万美元）
+
+* [金星协议 清算](https://t.me/venusliqwatch)。关注 金星协议 的清算事件
+
+* [金星协议 治理](https://t.me/venusgovwatch)。关注 金星协议 的治理提案 (VIP)。
