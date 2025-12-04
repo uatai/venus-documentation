@@ -1,63 +1,70 @@
 ---
-description: The Venus Protocol API providing access to indexed protocol data.
+
+金星 协议 API，提供对已索引协议数据的访问。
+
 ---
 
 # API
 
-Venus Protocol API provides two groups of endpoints
+金星 协议 API 提供两类端点：
 
-**Market Data -** Endpoints relating to lending markets
+**市场数据 -** 与借贷市场相关的端点
 
-**Activity -** Endpoints relating to user interactions with markets
+**活动 -** 与用户与市场互动相关的端点
 
-**Governance -** Endpoints providing information about proposals and voter activity
+**治理 -** 提供有关提案和投票活动的信息的端点
 
-## Base URL
+## 基本 URL
 
-The API is available without authentication for testnet and mainnet.
+该 API 无需身份验证即可在测试网和主网上使用。
 
-mainnet: [https://api.venus.io](https://api.venus.io/api/governance/venus)\
-testnet: [https://testnetapi.venus.io](https://testnetapi.venus.io/api/transactions/)
+主网：[https://api.venus.io](https://api.venus.io/api/governance/venus)
 
-## Versioning
+测试网：[https://testnetapi.venus.io](https://testnetapi.venus.io/api/transactions/)
 
-Endpoints are versioned using the `accept-version` header. The values for this header can be `stable` or `next`. By default the `stable` version is returned. When a `next` version is available, a `Warning - 299` header will be added to the `stable` version with a message of breaking changes. To receive this new version the `accept-version` header can be set to `next`.
+## 版本控制
 
-When the latest `next` version is made stable and the previous stable version is deprecated, both values for `accept-version` will return the latest version. Using the `next` header at this point will add a `Warning - 299` header alerting the client to remove `accept-version: next` to avoid receiving unexpected changes in the future.
+端点使用 `accept-version` 标头进行版本控制。此标头的值可以是 `stable` 或 `next`。默认情况下返回 `stable` 版本。当有 `next` 版本可用时，`stable` 版本号会添加一个 `Warning - 299` 标头，其中包含重大变更信息。要接收此新版本，可以将 `accept-version` 标头设置为 `next`。
 
-#### Versioning Choreography
+当最新的 `next` 版本成为稳定版本，而之前的稳定版本被弃用时，`accept-version` 的两个值都将返回最新版本。此时使用 `next` 标头会添加一个 `Warning - 299` 标头，提醒客户端移除 `accept-version: next`，以避免将来接收意外变更。
 
-These steps describe the process of upgrading endpoints to new versions as they are released
+#### 版本控制流程
 
-1. A `next` version is made available, accessible with the `accept-version: next` header. A `Warning - 299` header is added to the stable version with details about breaking changes.
-2. Clients will be given adequate time to upgrade to use the next version.
-3. The previous stable version will be deprecated, the next version becomes stable and using the `accept-version: next` header will add a warning to remove the header or use the stable version.
-4. Clients remove the `accept-version: next` header to avoid receiving unexpected changes.
-5. The endpoint is now ready to release another version.
+以下步骤描述了端点升级到新版本的过程：
 
-### Pool Endpoints
+1. `next` 版本可用，可通过 `accept-version: next` 标头访问。`Warning - 299` 标头会添加到稳定版本，其中包含重大变更的详细信息。
+
+2. 客户端将有充足的时间升级到下一个版本。
+
+3. 之前的稳定版本将被弃用，下一个版本将成为稳定版本。使用 `accept-version: next` 标头会发出警告，提示移除该标头或使用稳定版本。
+
+4. 客户端移除 `accept-version: next` 标头，以避免接收意外更改。
+
+5. 该端点现已准备好发布新版本。
+
+### 资金池端点
 
 {% swagger src="../.gitbook/assets/swagger.json" path="/pools" method="get" %}
+
 [swagger.json](../.gitbook/assets/swagger.json)
+
 {% endswagger %}
 
-
-
-
-
-### Market Endpoints
+### 市场端点
 
 {% swagger src="../.gitbook/assets/swagger.json" path="/markets" method="get" %}
+
 [swagger.json](../.gitbook/assets/swagger.json)
+
 {% endswagger %}
 
 {% swagger src="../.gitbook/assets/swagger.json" path="/markets/history" method="get" %}
+
 [swagger.json](../.gitbook/assets/swagger.json)
+
 {% endswagger %}
 
-
-
-### Governance Endpoints
+### 治理端点
 
 {% swagger src="../.gitbook/assets/swagger.json" path="/governance/proposals/{proposalId}/voteSummary" method="get" %}
 [swagger.json](../.gitbook/assets/swagger.json)
