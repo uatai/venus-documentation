@@ -53,6 +53,7 @@
 * [zkSync上的无Gas交易](guides/gasless-transactions-zksync.md)
 * [导入仓位](guides/import-positions.md)
 * [启用效率E模式](guides/enable-e-mode.md)
+* [以抵押物进行增值和偿还](guides/leveraged-positions.md)
 
 ## 技术参考
 
